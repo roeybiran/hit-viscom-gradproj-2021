@@ -52,7 +52,7 @@ export default async function makeProject(
   }
 
   const fullNameHe = firstNameHe + " " + lastNameHe;
-  const id = `${fullNameHe}_-_${projNameHe}`.replaceAll(/\s/g, "_");
+  const id = `${fullNameHe}_-_${projNameHe}`.replace(/\s/g, "_");
   const imageAlt = `${fullNameHe} – ${projNameHe}`;
 
   const student: Student = {
