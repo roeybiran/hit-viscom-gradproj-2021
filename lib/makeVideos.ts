@@ -5,7 +5,7 @@ export default async function makeVideos(list: string): Promise<string[]> {
     try {
       url = new URL(link).href;
     } catch (error) {
-      console.error(`${error.code}:`, link);
+      // console.error(`${error.code}:`, link);
       return;
     }
 
@@ -28,7 +28,7 @@ export default async function makeVideos(list: string): Promise<string[]> {
       )
         .then((value) => value.json())
         .catch((err) => {
-          console.error("JSON error from Vimeo url:", url);
+          // console.error("JSON error from Vimeo url:", url);
         });
     }
   });

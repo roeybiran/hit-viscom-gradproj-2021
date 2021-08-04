@@ -1,4 +1,9 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from "next";
 import Image from "next/image";
 import Center from "../../components/Center";
 import Nav from "../../components/Nav";
@@ -6,15 +11,11 @@ import Stack from "../../components/Stack";
 import fetchData from "../../lib/fetchData";
 import strings from "../../lib/strings";
 
-interface PageProps {
-  project: Project;
-  labels: {
-    mail: string;
-    instagram: string;
-    portfolio: string;
-  };
-}
-export default function ProjectPage({ project, labels }: PageProps) {
+export default function ProjectPage({
+  project,
+  labels,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  if (!project) return <div />;
   return (
     <Center>
       <Nav lang="he" />
@@ -76,12 +77,13 @@ export default function ProjectPage({ project, labels }: PageProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps = async (context: GetStaticPropsContext) => {
   const project = (await fetchData()).find(
     (project) => project.id === context.params?.id
   );
 
   return {
+    notFound: project === undefined,
     props: {
       project,
       labels: {
