@@ -10,7 +10,7 @@ import Nav from "../../components/Nav";
 import Stack from "../../components/Stack";
 import fetchData from "../../lib/fetchData";
 import strings from "../../lib/strings";
-
+//
 export default function ProjectPage({
   project,
   labels,
