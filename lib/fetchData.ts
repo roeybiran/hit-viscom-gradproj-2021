@@ -15,7 +15,17 @@ export default async function fetchData(): Promise<Project[]> {
     const projects = await Promise.all(rawRecords.map(makeProject));
 
     // @ts-ignore
-    return projects.filter((x) => x);
+    return projects
+      .filter((x) => x)
+      .sort((p1, p2) => {
+        if (p1!.student.lastName < p2!.student.lastName) return -1;
+        if (p1!.student.lastName > p2!.student.lastName) return 1;
+        if (p1!.student.firstName < p2!.student.firstName) return -1;
+        if (p1!.student.firstName > p2!.student.firstName) return 1;
+        if (p1!.id < p2!.id) return -1;
+        if (p1!.id > p2!.id) return 1;
+        return 0;
+      });
   } catch (error) {
     console.error(error);
     return [];

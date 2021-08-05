@@ -79,7 +79,7 @@ export default function ProjectPage({
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const project = (await fetchData()).find(
-    (project) => project.id === context.params?.id
+    (project) => project.id === context.params?.slug
   );
 
   return {
@@ -96,7 +96,9 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = (await fetchData()).map((p) => ({ params: { id: p.id } }));
+  const paths = (await fetchData()).map(({ id }) => ({
+    params: { slug: id },
+  }));
 
   return { paths, fallback: true };
 };

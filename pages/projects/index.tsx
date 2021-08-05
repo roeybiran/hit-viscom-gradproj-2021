@@ -22,7 +22,10 @@ export default function AllProjectsPage({ projects }: { projects: Project[] }) {
         <main style={{ width: "100%" }}>
           <Grid>
             {projects.map((project) => (
-              <Link href={`/projects/${project.id}`} key={project.id}>
+              <Link
+                href={`/projects/${encodeURIComponent(project.id)}`}
+                key={project.id}
+              >
                 <a
                   style={{
                     textDecoration: "none",

@@ -14,6 +14,8 @@ export default function ProjectCard({ project }: { project: Project }) {
       <ImageContainer>
         <Image
           src={project.featuredImage.url}
+          // width={project.featuredImage.width}
+          // height={project.featuredImage.height}
           layout="fill"
           objectFit="cover"
           objectPosition="center"
