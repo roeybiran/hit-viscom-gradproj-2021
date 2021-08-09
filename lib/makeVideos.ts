@@ -27,7 +27,7 @@ export default async function makeVideos(list: string): Promise<string[]> {
         )}&responsive=true`
       )
         .then((value) => value.json())
-        .catch((err) => {
+        .catch(() => {
           // console.error("JSON error from Vimeo url:", url);
         });
     }

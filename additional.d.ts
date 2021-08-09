@@ -1,26 +1,50 @@
-interface RawRecord {
+/*
+שם פרטי עברית
+שם משפחה עברית
+שם פרטי אנגלית
+שם משפחה אנגלית
+עמוד פורטפוליו
+עמוד אינסטגרם
+מייל
+טלפון
+שם פרויקט עברית
+שם פרויקט אנגלית
+מדיה ופורמט
+תקציר פרויקט עברית
+תקציר פרויקט אנגלית
+לינק לעמוד הפרויקט
+תמונה מייצגת
+תמונות נוספות
+סרטונים
+קומה
+חדר
+*/
+
+interface FormattedRecord {
   id: string;
-  fields: {
-    "שם פרטי עברית"?: string;
-    "שם משפחה עברית"?: string;
-    "שם פרויקט עברית"?: string;
-    "תקציר פרויקט עברית"?: string;
-    מייל?: string;
-    טלפון?: string;
-    "שם פרטי אנגלית"?: string;
-    "שם משפחה אנגלית"?: string;
-    "עמוד פורטפוליו"?: string;
-    "עמוד אינסטגרם"?: string;
-    "שם פרויקט אנגלית"?: string;
-    "מדיה ופורמט"?: string;
-    "תקציר פרויקט אנגלית"?: string;
-    "לינק לעמוד הפרויקט"?: string;
-    "תמונה מייצגת"?: Attachment[];
-    "תמונות נוספות"?: Attachment[];
-    סרטונים?: string;
-    חדר?: string;
-    קומה?: string;
-  };
+  //
+  firstNameHe: string;
+  lastNameHe: string;
+  firstNameEn?: string;
+  lastNameEn?: string;
+  portfolioUrl?: string;
+  instagramUrl?: string;
+  mail: string;
+  phone?: string;
+  projectNameHe: string;
+  projectNameEn?: string;
+  genre?: string;
+  projectSummaryHe: string;
+  projectSummaryEn?: string;
+  projectUrl?: string;
+  featuredImage: Attachment[];
+  otherImages: Attachment[];
+  videos?: string;
+  floor?: string;
+  room?: string;
+  //
+  slug: string;
+  imagesAltText: string;
 }
 
 interface Attachment {
@@ -50,29 +74,44 @@ interface Attachment {
   };
 }
 
-interface Project {
-  id: string;
+type ProjectPreview = {
   name: string;
-  summary: string;
   imageAlt: string;
   featuredImage: ImageAttachment;
+  id: string;
+  slug: string;
+  student: StudentPreview;
+  room: string | null;
+  floor: string | null;
+};
+
+type StudentPreview = {
+  firstName: string;
+  lastName: string;
+};
+
+interface ProjectDetails {
+  name: string;
+  imageAlt: string;
+  id: string;
+  slug: string;
+  room: string | null;
+  floor: string | null;
+  summary: string;
   otherImages: ImageAttachment[];
   videos: string[];
   student: Student;
   projectUrl: string | null;
   category: string | null;
-  room: string | null;
-  floor: string | null;
 }
 
-interface Student {
-  firstName: string;
-  lastName: string;
-  fullName: string;
+type Student = StudentPreview & StudentDetails;
+
+interface StudentDetails {
   mail: string;
   portfolio: string | null;
   instagram: string | null;
-  phone: string;
+  phone: string | null;
 }
 
 interface ImageAttachment {

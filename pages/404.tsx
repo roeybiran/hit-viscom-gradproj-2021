@@ -1,68 +1,15 @@
-import React from "react";
-import styled, { CSSProperties } from "styled-components";
-import Center from "../components/Center";
-import Nav from "../components/Nav";
+import ErrorPage from "../components/ErrorPage";
 import strings from "../lib/strings";
-
-interface WrapperProps {
-  centeredSelector?: string;
-}
-
-type Props = WrapperProps & {
-  children: React.ReactNode;
-  minHeight?: string;
-  pad?: boolean;
-  space?: string;
-  overrides?: CSSProperties;
-};
-
-const Wrapper = styled.div<WrapperProps>`
-  display: flex;
-  flex-direction: column;
-  min-height: var(--min-height);
-  padding: var(--padding);
-
-  > * {
-    margin-top: var(--space);
-    margin-bottom: var(--space);
-  }
-
-  > :first-child:not(${(props) => props.centeredSelector}) {
-    margin-top: 0;
-  }
-
-  > :last-child:not(${(props) => props.centeredSelector}) {
-    margin-bottom: 0;
-  }
-
-  > ${(props) => props.centeredSelector} {
-    margin-top: auto;
-    margin-bottom: auto;
-  }
-`;
-
-const Cover = (props: Props) => (
-  <Wrapper
-    centeredSelector={props.centeredSelector ?? "h1"}
-    style={{
-      // @ts-ignore
-      "--min-height": props.minHeight ?? "100vh",
-      "--padding": props.pad ? "1rem" : 0,
-      "--space": props.space ?? "var(--s1)",
-      ...props.overrides,
-    }}
-  >
-    {props.children}
-  </Wrapper>
-);
+import Head from "next/head";
 
 export default function Custom404() {
   return (
-    <Center>
-      <Cover>
-        <Nav lang="he" />
-        <h1>{strings["404"].he}</h1>
-      </Cover>
-    </Center>
+    <>
+      <Head>
+        <title>{strings.he.heads[404].title}</title>
+        <meta name="description" content={strings.he.heads[404].description} />
+      </Head>
+      <ErrorPage errorMessage={strings.he[404]} />
+    </>
   );
 }

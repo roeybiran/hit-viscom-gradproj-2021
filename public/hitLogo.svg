@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.07 47.5">
+  <defs>
+    <style>.cls-1{fill:#ffffff;}</style>
+  </defs>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <rect id="Rectangle_73" width="8.39" height="35.44" x="29.33" y="12.06" class="cls-1" data-name="Rectangle 73" rx="2.51"/>
+      <rect id="Rectangle_74" width="8.39" height="8.86" x="29.33" y=".18" class="cls-1" data-name="Rectangle 74" rx="2.51"/>
+      <rect id="Rectangle_75" width="8.39" height="8.86" x="46.75" y="38.64" class="cls-1" data-name="Rectangle 75" rx="2.51"/>
+      <path id="Path_698" d="M58.57 12.06H43.8a2.5 2.5 0 00-2.5 2.5v3.85a2.5 2.5 0 002.5 2.51h1.76a1.19 1.19 0 011.19 1.19v11a2.5 2.5 0 002.51 2.5h3.38a2.5 2.5 0 002.5-2.5v-11a1.19 1.19 0 011.2-1.19h2.23a2.5 2.5 0 002.5-2.51v-3.85a2.5 2.5 0 00-2.5-2.5z" class="cls-1" data-name="Path 698"/>
+      <path id="Path_699" d="M23.28 0h-3.39a2.5 2.5 0 00-2.5 2.5v14.58a1.7 1.7 0 01-1.71 1.71H10.1a1.7 1.7 0 01-1.71-1.71v-2.52a2.5 2.5 0 00-2.5-2.5H2.51A2.5 2.5 0 000 14.56V45a2.5 2.5 0 002.5 2.5h3.39a2.5 2.5 0 002.5-2.5V27.06a1.7 1.7 0 011.7-1.71h5.59a1.7 1.7 0 011.71 1.71V45a2.5 2.5 0 002.5 2.5h3.39a2.49 2.49 0 002.5-2.5V2.51A2.5 2.5 0 0023.29 0z" class="cls-1" data-name="Path 699"/>
+    </g>
+  </g>
+</svg>

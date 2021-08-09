@@ -1,43 +1,75 @@
 import Link from "next/link";
-import { GetStaticProps } from "next";
-import strings from "../lib/strings";
+import strings from "@/lib/strings";
+import Switcher from "@/components/Switcher";
+import Image from "next/image";
 import styled from "styled-components";
+import Center from "./Center";
+import SearchBar from "./SearchBar";
 
-interface Props {
-  lang: "he" | "en";
-}
+// TODO
+const routes = {
+  home: { path: "/", label: strings.he.home },
+  search: { path: "/search", label: strings.he.index },
+};
 
-const Switcher = styled.div`
+const Wrapper = styled.nav`
+  gap: var(--s2);
+  background-color: var(--stdblue);
+  color: var(--textcolor);
+  width: 100%;
   display: flex;
-  flex-wrap: nowrap;
-  gap: var(--s1);
-  overflow: auto;
-  /* font-size: var(--s3); */
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--s1);
+  font-size: var(--s1);
+
+  > * {
+    flex-grow: 1;
+  }
 `;
 
-export default function Nav({ lang }: Props) {
-  const homeLabel = strings.home[lang];
-  const projectsLabel = strings.gallery[lang];
-  const list = strings.index[lang];
+const HomeButton = styled.a`
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+`;
+
+interface Props {
+  searchModeCallback?: (arg: string) => void;
+}
+
+export default function Nav(props: Props) {
   return (
-    <nav>
-      <Switcher as="ul">
-        <li>
-          <Link href="/">
-            <a>{homeLabel}</a>
+    <Center maxWidth="1024px">
+      <Wrapper>
+        <Link href="/">
+          <a>
+            <HomeButton>
+              <Image
+                className="hit-logo"
+                src="/hitLogo.svg"
+                alt="Holon Institute of Technology Logo"
+                width={48}
+                height={48}
+              />
+              <div>
+                <p>{strings.he.navTitle}</p>
+                <p style={{ fontWeight: 700 }}>{strings.he.navSubtitle}</p>
+              </div>
+            </HomeButton>
+          </a>
+        </Link>
+        {props.searchModeCallback ? (
+          <SearchBar onInput={props.searchModeCallback} />
+        ) : (
+          <Link href={routes.search.path}>
+            <a style={{ fontSize: "initial", textAlign: "left" }}>
+              {routes.search.label}
+            </a>
           </Link>
-        </li>
-        <li>
-          <Link href="/projects">
-            <a>{projectsLabel}</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/locations">
-            <a>{list}</a>
-          </Link>
-        </li>
-      </Switcher>
-    </nav>
+        )}
+      </Wrapper>
+    </Center>
   );
 }
