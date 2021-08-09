@@ -42,13 +42,15 @@ export default function ProjectPage(
         <meta name="description" content={project.summary} />
       </Head>
       <Nav />
-      <Center>
-        <Stack>
-          <header style={{ marginTop: "var(--s1)" }}>
+      <Stack>
+        <header style={{ marginTop: "var(--s1)" }}>
+          <Center intristic={false}>
             <h1>{project.name}</h1>
             <p>{fullName}</p>
-          </header>
-          <main>
+          </Center>
+        </header>
+        <main>
+          <Center>
             <Stack>
               <p>{project.summary}</p>
               <Contact>
@@ -68,34 +70,28 @@ export default function ProjectPage(
                   </p>
                 )}
               </Contact>
-            </Stack>
-            <div>
               {project.videos.map((vid) => (
                 <div key={vid} dangerouslySetInnerHTML={{ __html: vid }} />
               ))}
-            </div>
-            <Center>
-              <Stack>
-                {project.otherImages.map((img) => {
-                  return (
-                    <div key={img.url}>
-                      <Image
-                        src={img.url}
-                        width={img.width}
-                        height={img.height}
-                        alt={project.imageAlt}
-                        placeholder="blur"
-                        objectFit="contain"
-                        blurDataURL={img.blurDataUrl}
-                      />
-                    </div>
-                  );
-                })}
-              </Stack>
-            </Center>
-          </main>
-        </Stack>
-      </Center>
+              {project.otherImages.map((img) => {
+                return (
+                  <div key={img.url}>
+                    <Image
+                      src={img.url}
+                      width={img.width}
+                      height={img.height}
+                      alt={project.imageAlt}
+                      placeholder="blur"
+                      objectFit="contain"
+                      blurDataURL={img.blurDataUrl}
+                    />
+                  </div>
+                );
+              })}
+            </Stack>
+          </Center>
+        </main>
+      </Stack>
     </>
   );
 }

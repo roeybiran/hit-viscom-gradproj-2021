@@ -8,6 +8,10 @@ const Wrapper = styled.div`
   margin-right: auto;
   flex-direction: column;
   align-items: center;
+
+  &.flexbox {
+    display: flex;
+  }
 `;
 
 interface Props {
@@ -26,12 +30,12 @@ const Center = ({
   children,
 }: Props) => (
   <Wrapper
+    className={intristic ? "flexbox" : ""}
     style={{
       maxWidth: maxWidth,
-      display: intristic ? "flex" : "unset",
+      textAlign: centerText ? "center" : "initial",
       paddingLeft: gutters,
       paddingRight: gutters,
-      textAlign: centerText ? "center" : "unset",
     }}
   >
     {children}

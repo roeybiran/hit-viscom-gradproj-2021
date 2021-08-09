@@ -29,7 +29,7 @@ const Wrapper = styled.nav`
   }
 `;
 
-const HomeButton = styled.a`
+const HomeButton = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: var(--s2);
