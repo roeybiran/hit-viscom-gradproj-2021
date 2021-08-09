@@ -5,6 +5,7 @@ import {
 } from "next";
 import Image from "next/image";
 import Head from "next/head";
+import styled from "styled-components";
 
 import fetchFullProject from "@/lib/fetchFullProject";
 import strings from "@/lib/strings";
@@ -15,7 +16,9 @@ import Stack from "@/components/Stack";
 import fetchAirtableData from "@/lib/fetchAirtableData";
 import Custom404 from "pages/404";
 
-// const Contact = styled.div``
+const Contact = styled.div`
+  text-decoration: underline;
+`;
 
 export default function ProjectPage(
   props: InferGetStaticPropsType<typeof getStaticProps>
@@ -46,24 +49,26 @@ export default function ProjectPage(
             <p>{fullName}</p>
           </header>
           <main>
-            <div>
+            <Stack>
               <p>{project.summary}</p>
-              {project.student.mail && (
-                <p>
-                  <a href={project.student.mail}>{mailLabel}</a>
-                </p>
-              )}
-              {project.student.portfolio && (
-                <p>
-                  <a href={project.student.portfolio}>{portfolioLabel}</a>
-                </p>
-              )}
-              {project.student.instagram && (
-                <p>
-                  <a href={project.student.instagram}>{instagramLabel}</a>
-                </p>
-              )}
-            </div>
+              <Contact>
+                {project.student.mail && (
+                  <p>
+                    <a href={project.student.mail}>{mailLabel}</a>
+                  </p>
+                )}
+                {project.student.portfolio && (
+                  <p>
+                    <a href={project.student.portfolio}>{portfolioLabel}</a>
+                  </p>
+                )}
+                {project.student.instagram && (
+                  <p>
+                    <a href={project.student.instagram}>{instagramLabel}</a>
+                  </p>
+                )}
+              </Contact>
+            </Stack>
             <div>
               {project.videos.map((vid) => (
                 <div key={vid} dangerouslySetInnerHTML={{ __html: vid }} />

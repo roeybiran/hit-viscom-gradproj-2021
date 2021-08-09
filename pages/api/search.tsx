@@ -3,7 +3,7 @@ import fetchAirtableData from "@/lib/fetchAirtableData";
 import type { NextApiRequest, NextApiResponse } from "next";
 import ReactDOMServer from "react-dom/server";
 
-let cache: RawRecord[];
+let cache: FormattedRecord[];
 
 export default async function handler(
   req: NextApiRequest,
