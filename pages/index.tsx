@@ -35,7 +35,6 @@ export default function Home(
                   firstName: project.student.firstName,
                   lastName: project.student.lastName,
                 }}
-                showLocation={false}
               />
             ))}
           </Grid>
