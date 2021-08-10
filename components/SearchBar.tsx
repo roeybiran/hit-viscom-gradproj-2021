@@ -52,11 +52,6 @@ export default function SearchBar(props: Props) {
           fontSize: "var(--s2)",
           display: "block",
         }}
-        type="text"
-        id="query"
-        name="q"
-        onInput={handler}
-        placeholder={strings.he.searchPlaceholder}
       />
     </Form>
   );

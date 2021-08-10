@@ -39,6 +39,7 @@ export default function ProjectPage(
         <meta name="description" content={project.summary} />
       </Head>
       <Nav />
+
       <Stack>
         <header>
           <Center intristic={false}>
@@ -91,6 +92,7 @@ export default function ProjectPage(
               })}
             </Stack>
           </Center>
+
         </main>
       </Stack>
     </>
