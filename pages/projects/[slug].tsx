@@ -27,10 +27,7 @@ export default function ProjectPage(
   if (!project) {
     return <Custom404 />;
   }
-  // TODO: i18
-  const mailLabel = strings.he.mail;
-  const portfolioLabel = strings.he.portfolio;
-  const instagramLabel = strings.he.instagram;
+
   const fullName = project.student.firstName + " " + project.student.lastName;
 
   return (
@@ -50,23 +47,27 @@ export default function ProjectPage(
           </Center>
         </header>
         <main>
-          <Center>
+          <Center intristic={false}>
             <Stack>
               <p>{project.summary}</p>
               <Contact>
                 {project.student.mail && (
                   <p>
-                    <a href={project.student.mail}>{mailLabel}</a>
+                    <a href={project.student.mail}>{strings.he.mail}</a>
                   </p>
                 )}
                 {project.student.portfolio && (
                   <p>
-                    <a href={project.student.portfolio}>{portfolioLabel}</a>
+                    <a href={project.student.portfolio}>
+                      {strings.he.portfolio}
+                    </a>
                   </p>
                 )}
                 {project.student.instagram && (
                   <p>
-                    <a href={project.student.instagram}>{instagramLabel}</a>
+                    <a href={project.student.instagram}>
+                      {strings.he.instagram}
+                    </a>
                   </p>
                 )}
               </Contact>

@@ -10,16 +10,12 @@ const ImageContainer = styled.div`
   min-height: 250px;
 `;
 
-const ProjectLabel = styled.p`
+const ProjectLabel = styled.div`
   color: var(--textcolor);
   padding-block-end: var(--s0);
   padding-block-start: var(--s0);
   padding-inline-start: var(--s0);
   font-size: var(--s0);
-
-  > span {
-    font-weight: 700;
-  }
 `;
 
 const LocationInfo = styled.div`
@@ -130,12 +126,12 @@ export default function ProjectCard(props: Props) {
               blurDataURL={featuredImage.blurDataUrl}
             />
           </ImageContainer>
-          <div style={{ height: "100%" }}>
-            <ProjectLabel>
-              <span>{projectName}</span> | {student.firstName}{" "}
-              {student.lastName}
-            </ProjectLabel>
-          </div>
+          <ProjectLabel style={{ height: "100%" }}>
+            <p style={{ fontSize: "var(--s1)", fontWeight: 700 }}>
+              {student.firstName} {student.lastName}
+            </p>
+            <p>{projectName}</p>
+          </ProjectLabel>
         </a>
       </Link>
     </article>
