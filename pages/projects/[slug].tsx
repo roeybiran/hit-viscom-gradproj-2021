@@ -42,6 +42,7 @@ export default function ProjectPage(
         <meta name="description" content={project.summary} />
       </Head>
       <Nav />
+
       <Stack>
         <header>
           <Center intristic={false}>
@@ -50,46 +51,53 @@ export default function ProjectPage(
           </Center>
         </header>
         <main>
-          <Center>
-            <Stack>
-              <p>{project.summary}</p>
-              <Contact>
-                {project.student.mail && (
-                  <p>
-                    <a href={project.student.mail}>{mailLabel}</a>
-                  </p>
-                )}
-                {project.student.portfolio && (
-                  <p>
-                    <a href={project.student.portfolio}>{portfolioLabel}</a>
-                  </p>
-                )}
-                {project.student.instagram && (
-                  <p>
-                    <a href={project.student.instagram}>{instagramLabel}</a>
-                  </p>
-                )}
-              </Contact>
-              {project.videos.map((vid) => (
-                <div key={vid} dangerouslySetInnerHTML={{ __html: vid }} />
-              ))}
-              {project.otherImages.map((img) => {
-                return (
-                  <div key={img.url}>
-                    <Image
-                      src={img.url}
-                      width={img.width}
-                      height={img.height}
-                      alt={project.imageAlt}
-                      placeholder="blur"
-                      objectFit="contain"
-                      blurDataURL={img.blurDataUrl}
-                    />
-                  </div>
-                );
-              })}
-            </Stack>
-          </Center>
+          <Stack>
+            <Center intristic={false}>
+              <Stack>
+                <p>{project.summary}</p>
+                <Contact>
+                  {project.student.mail && (
+                    <p>
+                      <a href={project.student.mail}>{mailLabel}</a>
+                    </p>
+                  )}
+                  {project.student.portfolio && (
+                    <p>
+                      <a href={project.student.portfolio}>{portfolioLabel}</a>
+                    </p>
+                  )}
+                  {project.student.instagram && (
+                    <p>
+                      <a href={project.student.instagram}>{instagramLabel}</a>
+                    </p>
+                  )}
+                </Contact>
+              </Stack>
+            </Center>
+            <Center>
+              <Stack>
+                {project.videos.map((vid) => (
+                  <div key={vid} dangerouslySetInnerHTML={{ __html: vid }} />
+                ))}
+                {project.otherImages.map((img) => {
+                  return (
+                    <Center key={img.url}>
+                      <Image
+                        key={img.url}
+                        src={img.url}
+                        width={img.width}
+                        height={img.height}
+                        alt={project.imageAlt}
+                        placeholder="blur"
+                        objectFit="contain"
+                        blurDataURL={img.blurDataUrl}
+                      />
+                    </Center>
+                  );
+                })}
+              </Stack>
+            </Center>
+          </Stack>
         </main>
       </Stack>
     </>

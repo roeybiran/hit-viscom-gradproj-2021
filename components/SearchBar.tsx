@@ -52,6 +52,7 @@ export default function SearchBar(props: Props) {
         {strings.he.searchLabel}
       </label>
       <input
+        autoFocus
         type="text"
         id="query"
         name="q"
