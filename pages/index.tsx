@@ -18,11 +18,11 @@ export default function Home(
         <meta name="description" content={strings.he.heads.home.description} />
       </Head>
       <Nav />
-      <Center maxWidth="1024px">
-        <header>
-          <h1>{}</h1>
+      <Center intristic={false} maxWidth="1024px">
+        <header className="sr-only">
+          <h1>{strings.he.suffix}</h1>
         </header>
-        <main style={{ width: "100%", marginTop: "var(--s2)" }}>
+        <main>
           <Grid>
             {props.projects.map((project) => (
               <ProjectCard

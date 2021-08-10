@@ -1,6 +1,5 @@
 import Link from "next/link";
 import strings from "@/lib/strings";
-import Switcher from "@/components/Switcher";
 import Image from "next/image";
 import styled from "styled-components";
 import Center from "./Center";
@@ -41,7 +40,7 @@ interface Props {
 
 export default function Nav(props: Props) {
   return (
-    <Center maxWidth="1024px">
+    <Center maxWidth="1024px" overrides={{ marginBlockEnd: "var(--s2)" }}>
       <Wrapper>
         <Link href="/">
           <a>
@@ -55,7 +54,24 @@ export default function Nav(props: Props) {
               />
               <div>
                 <p>{strings.he.navTitle}</p>
-                <p style={{ fontWeight: 700 }}>{strings.he.navSubtitle}</p>
+                <p style={{ fontWeight: 700, position: "relative" }}>
+                  {strings.he.navSubtitle}{" "}
+                  <span
+                    style={{
+                      fontSize: "var(--s-1)",
+                      position: "absolute",
+                      verticalAlign: "center",
+                      paddingLeft: "var(--s-2)",
+                      paddingRight: "var(--s-2)",
+                      backgroundColor: "var(--stdyellow)",
+                      color: "var(--stdblue)",
+                      borderRadius: "5px",
+                      transform: "translate(-25%, 50%)",
+                    }}
+                  >
+                    בטא
+                  </span>
+                </p>
               </div>
             </HomeButton>
           </a>

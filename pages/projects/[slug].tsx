@@ -43,7 +43,7 @@ export default function ProjectPage(
       </Head>
       <Nav />
       <Stack>
-        <header style={{ marginTop: "var(--s1)" }}>
+        <header>
           <Center intristic={false}>
             <h1>{project.name}</h1>
             <p>{fullName}</p>

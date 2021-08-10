@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import styled from "styled-components";
 
 // https://every-layout.dev/layouts/center/
@@ -19,6 +20,7 @@ interface Props {
   centerText?: boolean;
   gutters?: string;
   intristic?: boolean;
+  overrides?: CSSProperties;
   children: React.ReactNode;
 }
 
@@ -27,6 +29,7 @@ const Center = ({
   centerText = false,
   gutters = "var(--s1)",
   intristic = true,
+  overrides,
   children,
 }: Props) => (
   <Wrapper
@@ -36,6 +39,7 @@ const Center = ({
       textAlign: centerText ? "center" : "initial",
       paddingLeft: gutters,
       paddingRight: gutters,
+      ...overrides,
     }}
   >
     {children}

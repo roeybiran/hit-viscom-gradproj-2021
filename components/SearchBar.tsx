@@ -15,7 +15,6 @@ const Form = styled.form`
     background-color: var(--stdblue);
     border-bottom: 2px solid white;
     width: 80%;
-    text-align: left;
     margin-inline-start: auto;
     /* margin-inline-end: auto; */
     color: var(--textcolor);
