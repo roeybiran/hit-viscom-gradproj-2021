@@ -15,8 +15,8 @@
 
   font-family: "Heebo", sans-serif;
 
-  --stdblue: #3230fb;
-  --stdyellow: #e2ff34;
+  --stdblue: #3230fb; /* 4456a5 */
+  --stdyellow: #e2ff34; /* d3de32 */
   --textcolor: rgb(250, 250, 250);
 }
 

@@ -38,6 +38,7 @@ export default class MyDocument extends Document {
       <Html lang="he-IL" dir="rtl">
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="fa" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
             href="https://fonts.gstatic.com"

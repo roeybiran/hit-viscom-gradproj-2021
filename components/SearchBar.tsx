@@ -43,7 +43,11 @@ export default function SearchBar(props: Props) {
   useEffect(() => debouncer.clear(), [debouncer]);
 
   return (
-    <Form method="get" action="/api/search/">
+    <Form
+      method="get"
+      action="/api/search/"
+      onSubmit={(e) => e.preventDefault()}
+    >
       <label className="sr-only" htmlFor="query">
         {strings.he.searchLabel}
       </label>
