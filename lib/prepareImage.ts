@@ -1,4 +1,4 @@
-import hitPlaceholderBlurDataUrl from "./hitPlaceholder";
+import hitPlaceholderBlurDataUrl from "./placeholderBlurDataUrl";
 
 async function prepareBlurDataUrl(url: string | undefined, type: string) {
   try {
