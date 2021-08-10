@@ -21,19 +21,22 @@ const Wrapper = styled.nav`
   padding-block-start: var(--s1);
   padding-block-end: var(--s1);
   font-size: var(--s1);
-
   > * {
     flex-grow: 1;
   }
 `;
 
 interface Props {
-  searchModeCallback?: (arg: string) => void;
+  searchModeCallback: (arg: string) => void;
 }
 
 export default function Nav(props: Props) {
   return (
-    <Center maxWidth="1024px" overrides={{ marginBlockEnd: "var(--s2)" }}>
+    <Center
+      max="none"
+      gutters="var(--s1)"
+      overrides={{ marginBlockEnd: "var(--s2)" }}
+    >
       <Wrapper>
         <div>
           <Link href="/">
@@ -55,6 +58,7 @@ export default function Nav(props: Props) {
           >
             בטא
           </p>
+          <SearchBar onInput={props.searchModeCallback} />
         </div>
         <div
           style={{
@@ -73,8 +77,8 @@ export default function Nav(props: Props) {
           >
             HIT
           </a>
-          <p>{strings.he.hitFullName}</p>
-          <p>{strings.he.facultyName}</p>
+          <p style={{ maxWidth: "none" }}>{strings.he.hitFullName}</p>
+          <p style={{ maxWidth: "none" }}>{strings.he.facultyName}</p>
         </div>
       </Wrapper>
     </Center>

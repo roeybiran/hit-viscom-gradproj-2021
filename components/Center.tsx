@@ -16,26 +16,26 @@ const Wrapper = styled.div`
 `;
 
 interface Props {
-  maxWidth?: string;
+  max?: number | string;
   centerText?: boolean;
-  gutters?: string;
+  gutters?: number | string;
   intristic?: boolean;
   overrides?: CSSProperties;
   children: React.ReactNode;
 }
 
 const Center = ({
-  maxWidth = "var(--measure)",
+  max = "var(--measure)",
   centerText = false,
-  gutters = "var(--s1)",
-  intristic = true,
+  gutters = 0,
+  intristic = false,
   overrides,
   children,
 }: Props) => (
   <Wrapper
     className={intristic ? "flexbox" : ""}
     style={{
-      maxWidth: maxWidth,
+      maxWidth: max,
       textAlign: centerText ? "center" : "initial",
       paddingLeft: gutters,
       paddingRight: gutters,
