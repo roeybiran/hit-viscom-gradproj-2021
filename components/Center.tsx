@@ -7,39 +7,38 @@ const Wrapper = styled.div`
   box-sizing: content-box;
   margin-left: auto;
   margin-right: auto;
-  flex-direction: column;
-  align-items: center;
 
   &.flexbox {
     display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
 interface Props {
-  maxWidth?: string;
+  max?: number | string;
   centerText?: boolean;
-  gutters?: string;
+  gutters?: number | string;
   intristic?: boolean;
-  overrides?: CSSProperties;
+  style?: CSSProperties;
+  asElement?: string;
   children: React.ReactNode;
 }
 
 const Center = ({
-  maxWidth = "var(--measure)",
+  max = "var(--measure)",
   centerText = false,
-  gutters = "var(--s1)",
-  intristic = true,
-  overrides,
+  gutters = 0,
+  intristic = false,
   children,
 }: Props) => (
   <Wrapper
-    className={intristic ? "flexbox" : ""}
+    className={intristic ? "flexbox" : undefined}
     style={{
-      maxWidth: maxWidth,
+      maxWidth: max,
       textAlign: centerText ? "center" : "initial",
       paddingLeft: gutters,
       paddingRight: gutters,
-      ...overrides,
     }}
   >
     {children}

@@ -51,12 +51,18 @@ export default async function fetchAirtableData(): Promise<FormattedRecord[]> {
   const baseName = process.env.AIRTABLE_BASE;
   const tableName = encodeURIComponent(process.env.AIRTABLE_TABLE_NAME!);
   const endpoint = `https://api.airtable.com/v0/${baseName}/${tableName}?maxRecords=100&view=Grid%20view`;
-  const rawData = await fetch(endpoint, {
-    headers: {
-      Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}`,
-    },
-  });
-  const rawDataJson = (await rawData.json()).records as RawRecord[];
+  let rawDataJson: RawRecord[] = [];
+  try {
+    const rawData = await fetch(endpoint, {
+      headers: {
+        Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}`,
+      },
+    });
+    rawDataJson = (await rawData.json()).records as RawRecord[];
+  } catch (error) {
+    console.error(error);
+  }
+
   return rawDataJson
     .filter((rec) => {
       return (

@@ -15,10 +15,7 @@ import Nav from "@/components/Nav";
 import Stack from "@/components/Stack";
 import fetchAirtableData from "@/lib/fetchAirtableData";
 import Custom404 from "pages/404";
-
-const Contact = styled.div`
-  text-decoration: underline;
-`;
+import Link from "next/link";
 
 export default function ProjectPage(
   props: InferGetStaticPropsType<typeof getStaticProps>
@@ -27,11 +24,40 @@ export default function ProjectPage(
   if (!project) {
     return <Custom404 />;
   }
-  // TODO: i18
-  const mailLabel = strings.he.mail;
-  const portfolioLabel = strings.he.portfolio;
-  const instagramLabel = strings.he.instagram;
-  const fullName = project.student.firstName + " " + project.student.lastName;
+
+  const fullName = `${project.student.firstName} ${project.student.lastName}`;
+  const social = [
+    { prop: project.projectUrl, label: strings.he.projectUrl },
+    { prop: project.student.mail, label: strings.he.mail },
+    { prop: project.student.portfolio, label: strings.he.portfolio },
+    { prop: project.student.instagram, label: strings.he.instagram },
+  ]
+    .filter((x) => x.prop)
+    .map((x) => {
+      const final = x
+        .prop!.toLowerCase()
+        .replace(/^http(s?):\/\//, "")
+        .replace(/^www\./, "")
+        .replace(/^mailto:/, "")
+        .split("/")
+        .filter((x) => x)
+        .slice(0, 2)
+        .join("/");
+
+      return (
+        <li key={x.label}>
+          {x.label}:{" "}
+          <a
+            style={{ textDecoration: "underline" }}
+            href={x.prop!}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {final}
+          </a>
+        </li>
+      );
+    });
 
   return (
     <>
@@ -44,46 +70,43 @@ export default function ProjectPage(
       <Nav />
 
       <Stack>
-        <header>
-          <Center intristic={false}>
-            <h1>{project.name}</h1>
-            <p>{fullName}</p>
-          </Center>
-        </header>
+        <Center intristic={false}>
+          <header>
+            <Link href="/">
+              <a
+                style={{
+                  color: "var(--stdblue)",
+                  display: "block",
+                  marginBlockEnd: "var(--s1)",
+                }}
+              >
+                {strings.he.backArrow}{" "}
+                <span style={{ textDecoration: "underline" }}>
+                  {strings.he.back}
+                </span>
+              </a>
+            </Link>
+            <h1 style={{ fontWeight: 700 }}>{fullName}</h1>
+            <p style={{ fontSize: "var(--s1)" }}>{project.name}</p>
+          </header>
+        </Center>
         <main>
-          <Stack>
-            <Center intristic={false}>
+          <Stack space="var(--s3)">
+            <Center>
               <Stack>
                 <p>{project.summary}</p>
-                <Contact>
-                  {project.student.mail && (
-                    <p>
-                      <a href={project.student.mail}>{mailLabel}</a>
-                    </p>
-                  )}
-                  {project.student.portfolio && (
-                    <p>
-                      <a href={project.student.portfolio}>{portfolioLabel}</a>
-                    </p>
-                  )}
-                  {project.student.instagram && (
-                    <p>
-                      <a href={project.student.instagram}>{instagramLabel}</a>
-                    </p>
-                  )}
-                </Contact>
+                {social.length > 0 && <ul>{social}</ul>}
               </Stack>
             </Center>
-            <Center>
+            <Center intristic max={"1024px"}>
               <Stack>
                 {project.videos.map((vid) => (
                   <div key={vid} dangerouslySetInnerHTML={{ __html: vid }} />
                 ))}
                 {project.otherImages.map((img) => {
                   return (
-                    <Center key={img.url}>
+                    <div key={img.url}>
                       <Image
-                        key={img.url}
                         src={img.url}
                         width={img.width}
                         height={img.height}
@@ -92,7 +115,7 @@ export default function ProjectPage(
                         objectFit="contain"
                         blurDataURL={img.blurDataUrl}
                       />
-                    </Center>
+                    </div>
                   );
                 })}
               </Stack>

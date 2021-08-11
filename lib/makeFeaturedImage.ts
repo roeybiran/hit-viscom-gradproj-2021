@@ -1,4 +1,4 @@
-import hitPlaceholderBlurDataUrl from "./hitPlaceholder";
+import placeholderBlurDataUrl from "./placeholderBlurDataUrl";
 import prepareImage from "./prepareImage";
 
 export default async function makeFeaturedImage(
@@ -11,11 +11,11 @@ export default async function makeFeaturedImage(
     return await prepareImage(_list[0]);
   } else {
     return {
-      blurDataUrl: hitPlaceholderBlurDataUrl,
-      width: 1017,
-      height: 1017,
-      type: "image/jpg",
-      url: "/hit.jpg",
+      blurDataUrl: placeholderBlurDataUrl,
+      width: 1,
+      height: 1,
+      type: "image/jpeg",
+      url: "/placeholder.jpg",
     };
   }
 }

@@ -5,20 +5,14 @@ import styled from "styled-components";
 
 const Form = styled.form`
   font-size: initial;
-  background-color: var(--stdblue);
-  max-width: 100%;
-  padding-block-start: var(--s1);
-  padding-block-end: var(--s1);
+  margin-block-start: var(--s1);
 
   input {
     display: block;
-    background-color: var(--stdblue);
-    border-bottom: 2px solid white;
-    width: 80%;
-    margin-inline-start: auto;
-    /* margin-inline-end: auto; */
-    color: var(--textcolor);
+    border-bottom: 2px solid var(--stdblue);
     outline: none;
+    background-color: rgba(1, 1, 1, 0);
+    appearance: none;
   }
 
   input:active,
@@ -51,16 +45,20 @@ export default function SearchBar(props: Props) {
       <label className="sr-only" htmlFor="query">
         {strings.he.searchLabel}
       </label>
+      {/* TODO: progressively enhance */}
       <input
         autoFocus
+        style={{
+          width: "100%",
+          fontSize: "var(--s2)",
+          display: "block",
+        }}
         type="text"
         id="query"
         name="q"
         onInput={handler}
         placeholder={strings.he.searchPlaceholder}
       />
-      {/* <input type="hidden" name="json" value="1" /> */}
-      {/* <button type="submit">{searchLabel}</button> */}
     </Form>
   );
 }

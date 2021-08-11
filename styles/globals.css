@@ -20,6 +20,10 @@
   --textcolor: rgb(250, 250, 250);
 }
 
+html {
+  overflow-y: scroll;
+}
+
 p {
   max-width: 60ch;
   line-height: 1.5;

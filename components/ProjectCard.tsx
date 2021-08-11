@@ -10,30 +10,13 @@ const ImageContainer = styled.div`
   min-height: 250px;
 `;
 
-const ProjectLabel = styled.p`
+const ProjectLabel = styled.div`
   color: var(--textcolor);
-  padding-block-end: var(--s0);
-  padding-block-start: var(--s0);
+  padding: var(--s0);
+  /* padding-block-start: var(--s0);
   padding-inline-start: var(--s0);
+  padding-inline-start: var(--s0); */
   font-size: var(--s0);
-
-  > span {
-    font-weight: 700;
-  }
-`;
-
-const LocationInfo = styled.div`
-  /* font-size: var(--s1); */
-`;
-
-const SearchResult = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: stretch;
-  width: 100%;
-  padding-inline-end: var(--s2);
-  gap: var(--s1);
 `;
 
 interface Props {
@@ -45,66 +28,13 @@ interface Props {
     firstName: string;
     lastName: string;
   };
-}
-
-type SearchResultProps = Props & {
   room: string | null;
   floor: string | null;
-};
-
-export function ProjectSearchResult(props: SearchResultProps) {
-  const { slug, featuredImage, imageAlt, projectName, student } = props;
-  return (
-    <article>
-      <Link href={`/projects/${encodeURIComponent(slug)}`}>
-        <a
-          style={{
-            textDecoration: "none",
-            color: "unset",
-            display: "block",
-            backgroundColor: "var(--stdblue)",
-          }}
-        >
-          <SearchResult>
-            <ImageContainer>
-              <Image
-                src={featuredImage.url}
-                layout="fill"
-                // className="next-image"
-                // width={featuredImage.width}
-                // height={featuredImage.height}
-                objectFit="cover"
-                objectPosition="center"
-                alt={imageAlt}
-                placeholder="blur"
-                blurDataURL={featuredImage.blurDataUrl}
-              />
-            </ImageContainer>
-            <div style={{ height: "100%" }}>
-              <ProjectLabel>
-                <span>{projectName}</span> | {student.firstName}{" "}
-                {student.lastName}
-                {props.floor && props.room && (
-                  <LocationInfo>
-                    <p>
-                      {strings.he.floor}: {props.floor}{" "}
-                    </p>
-                    <p>
-                      {strings.he.room}: {props.room}
-                    </p>
-                  </LocationInfo>
-                )}
-              </ProjectLabel>
-            </div>
-          </SearchResult>
-        </a>
-      </Link>
-    </article>
-  );
 }
 
 export default function ProjectCard(props: Props) {
-  const { slug, featuredImage, imageAlt, projectName, student } = props;
+  const { slug, featuredImage, imageAlt, projectName, student, room, floor } =
+    props;
   return (
     <article>
       <Link href={`/projects/${encodeURIComponent(slug)}`}>
@@ -130,12 +60,27 @@ export default function ProjectCard(props: Props) {
               blurDataURL={featuredImage.blurDataUrl}
             />
           </ImageContainer>
-          <div style={{ height: "100%" }}>
-            <ProjectLabel>
-              <span>{projectName}</span> | {student.firstName}{" "}
-              {student.lastName}
-            </ProjectLabel>
-          </div>
+          <ProjectLabel style={{ height: "100%" }}>
+            <p style={{ fontSize: "var(--s1)", fontWeight: 700 }}>
+              {student.firstName} {student.lastName}
+            </p>
+            <p>{projectName}</p>
+
+            <div
+              style={{
+                marginTop: "var(--s-1)",
+                opacity: room && floor ? 1 : 0,
+                textAlign: "left",
+              }}
+            >
+              <p>
+                {strings.he.floor}: {floor}
+              </p>
+              <p>
+                {strings.he.room}: {room}
+              </p>
+            </div>
+          </ProjectLabel>
         </a>
       </Link>
     </article>

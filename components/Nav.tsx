@@ -5,87 +5,100 @@ import styled from "styled-components";
 import Center from "./Center";
 import SearchBar from "./SearchBar";
 
-// TODO
-const routes = {
-  home: { path: "/", label: strings.he.home },
-  search: { path: "/search", label: strings.he.index },
-};
-
-const Wrapper = styled.nav`
+const Wrapper = styled.div`
   gap: var(--s2);
-  background-color: var(--stdblue);
-  color: var(--textcolor);
+  color: var(--stdblue);
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: row-reverse wrap;
   justify-content: space-between;
-  align-items: center;
-  padding: var(--s1);
+  padding-block-start: var(--s1);
+  padding-block-end: var(--s1);
   font-size: var(--s1);
-
   > * {
     flex-grow: 1;
   }
 `;
 
-const HomeButton = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s2);
-`;
-
 interface Props {
-  searchModeCallback?: (arg: string) => void;
+  onInput?: (arg: string) => void;
 }
 
 export default function Nav(props: Props) {
   return (
-    <Center maxWidth="1024px" overrides={{ marginBlockEnd: "var(--s2)" }}>
-      <Wrapper>
-        <Link href="/">
-          <a>
-            <HomeButton>
-              <Image
-                className="hit-logo"
-                src="/hitLogo.svg"
-                alt="Holon Institute of Technology Logo"
-                width={48}
-                height={48}
-              />
-              <div>
-                <p>{strings.he.navTitle}</p>
-                <p style={{ fontWeight: 700, position: "relative" }}>
-                  {strings.he.navSubtitle}{" "}
-                  <span
-                    style={{
-                      fontSize: "var(--s-1)",
-                      position: "absolute",
-                      verticalAlign: "center",
-                      paddingLeft: "var(--s-2)",
-                      paddingRight: "var(--s-2)",
-                      backgroundColor: "var(--stdyellow)",
-                      color: "var(--stdblue)",
-                      borderRadius: "5px",
-                      transform: "translate(-25%, 50%)",
-                    }}
-                  >
-                    בטא
-                  </span>
-                </p>
-              </div>
-            </HomeButton>
-          </a>
-        </Link>
-        {props.searchModeCallback ? (
-          <SearchBar onInput={props.searchModeCallback} />
-        ) : (
-          <Link href={routes.search.path}>
-            <a style={{ fontSize: "initial", textAlign: "left" }}>
-              {routes.search.label}
-            </a>
-          </Link>
-        )}
-      </Wrapper>
-    </Center>
+    <nav
+      aria-labelledby="primary-navigation"
+      style={{
+        position: "sticky",
+        top: "0",
+        // backgroundColor: "white",
+        backdropFilter: "blur(96px)",
+        WebkitBackdropFilter: "blur(96px)",
+        zIndex: 2,
+      }}
+    >
+      <Center max="none" gutters="var(--s1)">
+        <Wrapper>
+          <HitInfo />
+          <div>
+            <Masthead />
+            {props.onInput && <SearchBar onInput={props.onInput} />}
+          </div>
+        </Wrapper>
+      </Center>
+      <div
+        style={{
+          borderBottom: "1px solid var(--stdblue)",
+          marginBlockEnd: "var(--s2)",
+        }}
+      />
+    </nav>
   );
 }
+
+const Masthead = () => (
+  <>
+    <Link href="/">
+      <a style={{ fontWeight: 700 }}>{strings.he.exhibitionName}</a>
+    </Link>
+    <p>{strings.he.exhibitionDescription}</p>
+    <p style={{ fontWeight: 700 }}>{strings.he.exhibitionDept}</p>
+    <p>{new Date().getFullYear()}</p>
+    <p
+      style={{
+        display: "inline-block",
+        fontSize: "var(--s0)",
+        paddingLeft: "var(--s-2)",
+        paddingRight: "var(--s-2)",
+        backgroundColor: "var(--stdblue)",
+        color: "var(--stdyellow)",
+        borderRadius: "5px",
+      }}
+    >
+      בטא
+    </p>
+  </>
+);
+
+const HitInfo = () => (
+  <div
+    style={{
+      fontSize: "initial",
+      textAlign: "left",
+    }}
+  >
+    <a
+      href="https://www.hit.ac.il/"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        letterSpacing: "1px",
+        fontWeight: 700,
+      }}
+    >
+      HIT
+    </a>
+    <p style={{ maxWidth: "none" }}>{strings.he.hitFullName}</p>
+    <p style={{ maxWidth: "none" }}>{strings.he.facultyName}</p>
+  </div>
+);
