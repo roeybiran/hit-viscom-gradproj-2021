@@ -12,9 +12,6 @@ import { useState, useMemo } from "react";
 export default function Home(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
-  const [currentCards, setCurrentCards] = useState<JSX.Element[]>([]);
-  const [inSearchMode, setInSearchMode] = useState<boolean>(false);
-
   const allProjects = useMemo(
     () =>
       props.projects.map((p) => ({
@@ -38,12 +35,18 @@ export default function Home(
     [props.projects]
   );
 
+  const [currentCards, setCurrentCards] = useState<JSX.Element[]>(
+    allProjects.map((p) => p.card)
+  );
+  const [inSearchMode, setInSearchMode] = useState<boolean>(false);
+
   const handleChange = (s: string) => {
     const q = s.toLowerCase().replace(/\s/g, "");
-    setInSearchMode(true);
     if (!q) {
       setInSearchMode(false);
       setCurrentCards(allProjects.map((p) => p.card));
+    } else {
+      setInSearchMode(true);
     }
     const filtered = allProjects
       .filter(({ project: p }) => {
@@ -67,7 +70,7 @@ export default function Home(
         <title>{strings.he.heads.home.title}</title>
         <meta name="description" content={strings.he.heads.home.description} />
       </Head>
-      <Nav searchModeCallback={handleChange} />
+      <Nav onInput={handleChange} />
       <Center max="none" gutters="var(--s1)">
         <header className="sr-only">
           <h1>{strings.he.suffix}</h1>

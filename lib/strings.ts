@@ -12,6 +12,7 @@ const he = {
   facultyName: "הפקולטה לעיצוב",
   hitFullName: "מכון טכנולוגי חולון",
   instagram: "אינסטגרם",
+  projectUrl: "עמוד הפרויקט",
   mail: "מייל",
   portfolio: "פורטפוליו",
   "404": "העמוד לא נמצא.",
@@ -22,6 +23,8 @@ const he = {
   index: "חיפוש",
   searchLabel: "חיפוש",
   searchPlaceholder: "חיפוש לפי שם פרויקט או סטודנט.ית",
+  back: "לכל הפרויקטים",
+  backArrow: "→",
   heads: {
     home: {
       title: `בית | ${suffix.he}`,

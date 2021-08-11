@@ -19,20 +19,6 @@ const ProjectLabel = styled.div`
   font-size: var(--s0);
 `;
 
-const LocationInfo = styled.div`
-  /* font-size: var(--s1); */
-`;
-
-const SearchResult = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: stretch;
-  width: 100%;
-  padding-inline-end: var(--s2);
-  gap: var(--s1);
-`;
-
 interface Props {
   slug: string;
   featuredImage: ImageAttachment;
@@ -84,6 +70,7 @@ export default function ProjectCard(props: Props) {
               style={{
                 marginTop: "var(--s-1)",
                 opacity: room && floor ? 1 : 0,
+                textAlign: "left",
               }}
             >
               <p>

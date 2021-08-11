@@ -9,7 +9,7 @@ type Props = WrapperProps & {
   minHeight?: string;
   pad?: boolean;
   space?: string;
-  overrides?: CSSProperties;
+  style?: CSSProperties;
 };
 
 const Wrapper = styled.div<WrapperProps>`
@@ -45,7 +45,7 @@ const Cover = (props: Props) => (
       "--min-height": props.minHeight ?? "100vh",
       "--padding": props.pad ? "1rem" : 0,
       "--space": props.space ?? "var(--s1)",
-      ...props.overrides,
+      ...props.style,
     }}
   >
     {props.children}

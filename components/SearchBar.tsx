@@ -11,6 +11,8 @@ const Form = styled.form`
     display: block;
     border-bottom: 2px solid var(--stdblue);
     outline: none;
+    background-color: rgba(1, 1, 1, 0);
+    appearance: none;
   }
 
   input:active,
@@ -43,8 +45,7 @@ export default function SearchBar(props: Props) {
       <label className="sr-only" htmlFor="query">
         {strings.he.searchLabel}
       </label>
-      {/* <input type="hidden" name="json" value="1" /> */}
-      {/* <button type="submit">{searchLabel}</button> */}
+      {/* TODO: progressively enhance */}
       <input
         autoFocus
         style={{

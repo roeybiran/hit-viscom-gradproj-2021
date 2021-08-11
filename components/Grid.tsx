@@ -2,7 +2,7 @@ import styled, { CSSProperties } from "styled-components";
 
 interface Props {
   children: React.ReactNode;
-  overrides?: CSSProperties;
+  style?: CSSProperties;
   as?: string;
 }
 
@@ -18,7 +18,7 @@ export default function Grid(props: Props) {
     <Wrapper
       // @ts-ignore
       as={props.as ?? "div"}
-      style={props.overrides}
+      style={props.style}
     >
       {props.children}
     </Wrapper>

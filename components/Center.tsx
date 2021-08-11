@@ -7,11 +7,11 @@ const Wrapper = styled.div`
   box-sizing: content-box;
   margin-left: auto;
   margin-right: auto;
-  flex-direction: column;
-  align-items: center;
 
   &.flexbox {
     display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -20,7 +20,8 @@ interface Props {
   centerText?: boolean;
   gutters?: number | string;
   intristic?: boolean;
-  overrides?: CSSProperties;
+  style?: CSSProperties;
+  asElement?: string;
   children: React.ReactNode;
 }
 
@@ -29,17 +30,15 @@ const Center = ({
   centerText = false,
   gutters = 0,
   intristic = false,
-  overrides,
   children,
 }: Props) => (
   <Wrapper
-    className={intristic ? "flexbox" : ""}
+    className={intristic ? "flexbox" : undefined}
     style={{
       maxWidth: max,
       textAlign: centerText ? "center" : "initial",
       paddingLeft: gutters,
       paddingRight: gutters,
-      ...overrides,
     }}
   >
     {children}
