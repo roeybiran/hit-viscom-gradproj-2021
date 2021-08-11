@@ -34,14 +34,15 @@ export default function ProjectPage(
   ]
     .filter((x) => x.prop)
     .map((x) => {
-      const url = new URL(x.prop!.toLowerCase());
-      const host = url.host.replace(/^www\./, "");
-
-      const path = `${url.pathname
+      const final = x
+        .prop!.toLowerCase()
+        .replace(/^http(s?):\/\//, "")
+        .replace(/^www\./, "")
+        .replace(/^mailto:/, "")
         .split("/")
         .filter((x) => x)
-        .slice(0, 1)}`;
-      const final = `${host}/${path}`.replace(/^\/|\/$/g, "");
+        .slice(0, 2)
+        .join("/");
 
       return (
         <li key={x.label}>
