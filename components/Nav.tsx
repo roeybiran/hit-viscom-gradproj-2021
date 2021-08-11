@@ -5,62 +5,78 @@ import styled from "styled-components";
 import Center from "./Center";
 import SearchBar from "./SearchBar";
 
-const Wrapper = styled.div`
-  gap: var(--s2);
-  color: var(--stdblue);
-  width: 100%;
+const MastheadWrapper = styled.div`
+  gap: var(--s0);
   display: flex;
   flex-flow: row-reverse wrap;
   justify-content: space-between;
-  padding-block-start: var(--s1);
-  padding-block-end: var(--s1);
-  font-size: var(--s1);
   > * {
     flex-grow: 1;
   }
+`;
+
+const Divider = styled.div`
+  border-bottom: 1px solid currentColor;
+  margin-block-end: var(--s0);
 `;
 
 interface Props {
   onInput?: (arg: string) => void;
 }
 
+const style = { color: "var(--stdblue)", fontSize: "var(--s1)" };
+
 export default function Nav(props: Props) {
   return (
-    <nav
-      aria-labelledby="primary-navigation"
-      style={{
-        position: "sticky",
-        top: "0",
-        // backgroundColor: "white",
-        backdropFilter: "blur(96px)",
-        WebkitBackdropFilter: "blur(96px)",
-        zIndex: 2,
-      }}
-    >
-      <Center max="none" gutters="var(--s1)">
-        <Wrapper>
-          <HitInfo />
-          <div>
-            <Masthead />
-            {props.onInput && <SearchBar onInput={props.onInput} />}
-          </div>
-        </Wrapper>
-      </Center>
-      <div
+    <>
+      <header
         style={{
-          borderBottom: "1px solid var(--stdblue)",
-          marginBlockEnd: "var(--s2)",
+          position: "sticky",
+          top: "0",
+          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          backdropFilter: "blur(96px)",
+          WebkitBackdropFilter: "blur(96px)",
+          zIndex: 2,
+          ...style,
         }}
-      />
-    </nav>
+      >
+        <Home />
+        <Divider />
+      </header>
+      <div style={{ ...style, marginBlockEnd: "var(--s2)" }}>
+        <Center max="none" gutters="var(--s1)">
+          <MastheadWrapper>
+            <HitInfo />
+            <div>
+              <Details />
+              {props.onInput && <SearchBar onInput={props.onInput} />}
+            </div>
+          </MastheadWrapper>
+        </Center>
+      </div>
+    </>
   );
 }
 
-const Masthead = () => (
-  <>
+const Home = () => (
+  <Center max="none" gutters="var(--s1)">
     <Link href="/">
-      <a style={{ fontWeight: 700 }}>{strings.he.exhibitionName}</a>
+      <a
+        style={{
+          fontWeight: 700,
+          display: "block",
+          paddingBlockStart: "var(--s1)",
+          paddingBlockEnd: "var(--s1)",
+        }}
+      >
+        {strings.he.exhibitionName}
+      </a>
     </Link>
+  </Center>
+);
+
+const Details = () => (
+  <>
     <p>{strings.he.exhibitionDescription}</p>
     <p style={{ fontWeight: 700 }}>{strings.he.exhibitionDept}</p>
     <p>{new Date().getFullYear()}</p>
