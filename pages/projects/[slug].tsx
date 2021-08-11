@@ -27,15 +27,15 @@ export default function ProjectPage(
 
   const fullName = `${project.student.firstName} ${project.student.lastName}`;
   const social = [
-    { prop: project.projectUrl, label: strings.he.projectUrl },
-    { prop: project.student.mail, label: strings.he.mail },
-    { prop: project.student.portfolio, label: strings.he.portfolio },
-    { prop: project.student.instagram, label: strings.he.instagram },
+    { address: project.projectUrl, label: strings.he.projectUrl },
+    { address: project.student.mail, label: strings.he.mail },
+    { address: project.student.portfolio, label: strings.he.portfolio },
+    { address: project.student.instagram, label: strings.he.instagram },
   ]
-    .filter((x) => x.prop)
+    .filter((x) => x.address)
     .map((x) => {
-      const final = x
-        .prop!.toLowerCase()
+      const prettyUrl = x
+        .address!.toLowerCase()
         .replace(/^http(s?):\/\//, "")
         .replace(/^www\./, "")
         .replace(/^mailto:/, "")
@@ -49,11 +49,11 @@ export default function ProjectPage(
           {x.label}:{" "}
           <a
             style={{ textDecoration: "underline" }}
-            href={x.prop!}
+            href={x.address!}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {final}
+            {prettyUrl}
           </a>
         </li>
       );
