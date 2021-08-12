@@ -1,7 +1,7 @@
-import debounce from "@/lib/debounce";
-import strings from "@/lib/strings";
 import { FormEvent, useEffect, useMemo } from "react";
 import styled from "styled-components";
+import debounce from "@/lib/debounce";
+import strings from "@/lib/strings";
 
 const Form = styled.form`
   font-size: initial;

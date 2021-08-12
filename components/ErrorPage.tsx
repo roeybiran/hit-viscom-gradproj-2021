@@ -9,8 +9,6 @@ interface Props {
 }
 
 const Wrapper = styled.div`
-  color: var(--stdblue);
-
   h1 {
     font-weight: 700;
   }

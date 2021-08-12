@@ -2,7 +2,6 @@ import strings from "@/lib/strings";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
-import Stack from "./Stack";
 
 const ImageContainer = styled.div`
   position: relative;
@@ -11,11 +10,8 @@ const ImageContainer = styled.div`
 `;
 
 const ProjectLabel = styled.div`
-  color: var(--textcolor);
+  color: var(--stdwhite);
   padding: var(--s0);
-  /* padding-block-start: var(--s0);
-  padding-inline-start: var(--s0);
-  padding-inline-start: var(--s0); */
   font-size: var(--s0);
 `;
 

@@ -24,7 +24,7 @@ interface Props {
   onInput?: (arg: string) => void;
 }
 
-const style = { color: "var(--stdblue)", fontSize: "var(--s1)" };
+const style = { fontSize: "var(--s1)" };
 
 export default function Nav(props: Props) {
   return (
@@ -87,7 +87,7 @@ const Details = () => (
         paddingLeft: "var(--s-2)",
         paddingRight: "var(--s-2)",
         backgroundColor: "var(--stdblue)",
-        color: "var(--stdyellow)",
+        color: "rgba(255, 255, 255, 0.9)",
         borderRadius: "5px",
       }}
     >

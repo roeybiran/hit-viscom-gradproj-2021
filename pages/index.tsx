@@ -9,6 +9,34 @@ import makeFeaturedImage from "@/lib/makeFeaturedImage";
 import strings from "@/lib/strings";
 import { useState, useMemo } from "react";
 import Footer from "@/components/Footer";
+import styled from "styled-components";
+import Cover from "@/components/Cover";
+
+const SearchModeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  max-width: var(--measure);
+  justify-content: center;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+`;
+
+const Results = (props: { searchMode: boolean; children: JSX.Element[] }) => {
+  if (props.searchMode) {
+    return props.children.length > 0 ? (
+      <SearchModeWrapper>{props.children}</SearchModeWrapper>
+    ) : (
+      <Center intristic>
+        <p style={{ fontSize: "var(--s3)", color: "var(--stdblue)" }}>
+          ¯\_(ツ)_/¯
+        </p>
+      </Center>
+    );
+  } else {
+    return <Grid>{props.children}</Grid>;
+  }
+};
 
 export default function Home(
   props: InferGetStaticPropsType<typeof getStaticProps>
@@ -77,23 +105,7 @@ export default function Home(
           <h1>{strings.he.suffix}</h1>
         </header>
         <main>
-          {inSearchMode ? (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "var(--s2)",
-                maxWidth: "var(--measure)",
-                justifyContent: "center",
-                marginInlineStart: "auto",
-                marginInlineEnd: "auto",
-              }}
-            >
-              {currentCards}
-            </div>
-          ) : (
-            <Grid>{currentCards}</Grid>
-          )}
+          <Results searchMode={inSearchMode}>{currentCards}</Results>
         </main>
       </Center>
       <Footer

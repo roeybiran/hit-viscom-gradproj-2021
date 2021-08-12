@@ -15,7 +15,6 @@ const scrolling = keyframes`
 `;
 
 const Wrapper = styled.div`
-  color: var(--stdblue);
   margin-block-start: var(--s2);
   margin-block-end: var(--s0);
   text-decoration: none;
