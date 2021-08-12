@@ -70,7 +70,7 @@ export default function ProjectPage(
       <Nav />
 
       <Stack>
-        <Center intristic={false}>
+        <Center intristic={false} gutters="var(--s1)">
           <header>
             <Link href="/">
               <a
@@ -92,13 +92,13 @@ export default function ProjectPage(
         </Center>
         <main>
           <Stack space="var(--s3)">
-            <Center>
+            <Center intristic={false} gutters="var(--s1)">
               <Stack>
                 <p>{project.summary}</p>
                 {social.length > 0 && <ul>{social}</ul>}
               </Stack>
             </Center>
-            <Center intristic max={"1024px"}>
+            <Center intristic max="1024px">
               <Stack>
                 {project.videos.map((vid) => (
                   <div key={vid} dangerouslySetInnerHTML={{ __html: vid }} />
