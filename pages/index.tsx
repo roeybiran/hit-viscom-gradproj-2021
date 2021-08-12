@@ -3,11 +3,12 @@ import Head from "next/head";
 import ProjectCard from "@/components/ProjectCard";
 import Center from "@/components/Center";
 import Grid from "@/components/Grid";
-import Nav from "@/components/Nav";
+import Nav from "@/components/Header";
 import fetchAirtableData from "@/lib/fetchAirtableData";
 import makeFeaturedImage from "@/lib/makeFeaturedImage";
 import strings from "@/lib/strings";
 import { useState, useMemo } from "react";
+import Footer from "@/components/Footer";
 
 export default function Home(
   props: InferGetStaticPropsType<typeof getStaticProps>
@@ -95,6 +96,13 @@ export default function Home(
           )}
         </main>
       </Center>
+      <Footer
+        list={allProjects.map((p) => ({
+          first: p.project.student.firstName,
+          last: p.project.student.lastName,
+          slug: p.project.slug,
+        }))}
+      />
     </>
   );
 }

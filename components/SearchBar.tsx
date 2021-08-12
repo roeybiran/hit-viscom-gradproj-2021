@@ -47,7 +47,6 @@ export default function SearchBar(props: Props) {
       </label>
       {/* TODO: progressively enhance */}
       <input
-        autoFocus
         style={{
           width: "100%",
           fontSize: "var(--s2)",

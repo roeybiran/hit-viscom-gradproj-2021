@@ -44,3 +44,7 @@ h1 {
   width: 1px;
   white-space: nowrap;
 }
+
+address {
+  font-style: normal;
+}

@@ -1,20 +1,31 @@
+import styled from "styled-components";
 import Center from "../components/Center";
 import Cover from "../components/Cover";
-import Nav from "../components/Nav";
+import Link from "next/link";
+import strings from "@/lib/strings";
 
 interface Props {
   errorMessage: string;
 }
 
+const Wrapper = styled.div`
+  color: var(--stdblue);
+
+  h1 {
+    font-weight: 700;
+  }
+`;
 export default function ErrorPage(props: Props) {
   return (
-    <>
-      <Center>
-        <Cover>
-          <Nav />
+    <Wrapper>
+      <Cover centered="div">
+        <Center intristic>
           <h1>{props.errorMessage}</h1>
-        </Cover>
-      </Center>
-    </>
+          <Link href="/">
+            <a>{strings.he.backToHome}</a>
+          </Link>
+        </Center>
+      </Cover>
+    </Wrapper>
   );
 }

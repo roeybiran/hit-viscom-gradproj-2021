@@ -1,15 +1,14 @@
 import styled, { CSSProperties } from "styled-components";
 
 interface WrapperProps {
-  centeredSelector?: string;
+  centered?: string;
 }
 
 type Props = WrapperProps & {
   children: React.ReactNode;
   minHeight?: string;
-  pad?: boolean;
+  noPad?: boolean;
   space?: string;
-  style?: CSSProperties;
 };
 
 const Wrapper = styled.div<WrapperProps>`
@@ -23,15 +22,15 @@ const Wrapper = styled.div<WrapperProps>`
     margin-bottom: var(--space);
   }
 
-  > :first-child:not(${(props) => props.centeredSelector}) {
+  > :first-child:not(${(props) => props.centered}) {
     margin-top: 0;
   }
 
-  > :last-child:not(${(props) => props.centeredSelector}) {
+  > :last-child:not(${(props) => props.centered}) {
     margin-bottom: 0;
   }
 
-  > ${(props) => props.centeredSelector} {
+  > ${(props) => props.centered} {
     margin-top: auto;
     margin-bottom: auto;
   }
@@ -39,13 +38,12 @@ const Wrapper = styled.div<WrapperProps>`
 
 const Cover = (props: Props) => (
   <Wrapper
-    centeredSelector={props.centeredSelector ?? "h1"}
+    centered={props.centered ?? "h1"}
     style={{
       // @ts-ignore
-      "--min-height": props.minHeight ?? "100vh",
-      "--padding": props.pad ? "1rem" : 0,
       "--space": props.space ?? "var(--s1)",
-      ...props.style,
+      "--min-height": props.minHeight ?? "100vh",
+      "--padding": props.noPad ? 0 : "1rem",
     }}
   >
     {props.children}

@@ -11,11 +11,12 @@ import fetchFullProject from "@/lib/fetchFullProject";
 import strings from "@/lib/strings";
 
 import Center from "@/components/Center";
-import Nav from "@/components/Nav";
+import Nav from "@/components/Header";
 import Stack from "@/components/Stack";
 import fetchAirtableData from "@/lib/fetchAirtableData";
 import Custom404 from "pages/404";
 import Link from "next/link";
+import Footer from "@/components/Footer";
 
 export default function ProjectPage(
   props: InferGetStaticPropsType<typeof getStaticProps>
@@ -68,9 +69,8 @@ export default function ProjectPage(
         <meta name="description" content={project.summary} />
       </Head>
       <Nav />
-
       <Stack>
-        <Center intristic={false}>
+        <Center intristic={false} gutters="var(--s1)">
           <header>
             <Link href="/">
               <a
@@ -92,13 +92,13 @@ export default function ProjectPage(
         </Center>
         <main>
           <Stack space="var(--s3)">
-            <Center>
+            <Center intristic={false} gutters="var(--s1)">
               <Stack>
                 <p>{project.summary}</p>
                 {social.length > 0 && <ul>{social}</ul>}
               </Stack>
             </Center>
-            <Center intristic max={"1024px"}>
+            <Center intristic max="1024px">
               <Stack>
                 {project.videos.map((vid) => (
                   <div key={vid} dangerouslySetInnerHTML={{ __html: vid }} />
@@ -122,6 +122,7 @@ export default function ProjectPage(
             </Center>
           </Stack>
         </main>
+        <Footer list={props.allProjects} />
       </Stack>
     </>
   );
@@ -133,10 +134,19 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     project = await fetchFullProject(context.params.slug);
   }
 
+  // TODO: remove this redundant call (check nextjs support for getstaticprops in layout comps)
+  const allProjects = (await fetchAirtableData()).map(
+    ({ firstNameHe, lastNameHe, slug }) => ({
+      first: firstNameHe,
+      last: lastNameHe,
+      slug,
+    })
+  );
   return {
     notFound: project === undefined,
     props: {
       project,
+      allProjects,
     },
   };
 };

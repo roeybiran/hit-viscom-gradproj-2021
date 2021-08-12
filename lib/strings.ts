@@ -11,6 +11,7 @@ const he = {
   exhibitionDept: "המחלקה לתקשורת חזותית",
   facultyName: "הפקולטה לעיצוב",
   hitFullName: "מכון טכנולוגי חולון",
+  hitAddress: "רחוב הופיין 63, חולון",
   instagram: "אינסטגרם",
   projectUrl: "עמוד הפרויקט",
   mail: "מייל",
@@ -44,6 +45,11 @@ const he = {
       description: "תקלת שרת.",
     },
   },
+  credits: {
+    dev: "פיתוח ועיצוב",
+    me: "רועי בירן",
+  },
+  backToHome: "→ חזרה לעמוד הבית",
 };
 
 const en = { ...he };
