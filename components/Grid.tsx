@@ -1,9 +1,9 @@
 import styled, { CSSProperties } from "styled-components";
 
 interface Props {
-  children: React.ReactNode;
   style?: CSSProperties;
   as?: string;
+  children?: React.ReactNode;
 }
 
 const Wrapper = styled.div`

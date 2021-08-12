@@ -75,7 +75,6 @@ export default function ProjectPage(
             <Link href="/">
               <a
                 style={{
-                  color: "var(--stdblue)",
                   display: "block",
                   marginBlockEnd: "var(--s1)",
                 }}
