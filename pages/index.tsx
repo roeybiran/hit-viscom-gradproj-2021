@@ -28,7 +28,12 @@ const Results = (props: { searchMode: boolean; children: JSX.Element[] }) => {
       <SearchModeWrapper>{props.children}</SearchModeWrapper>
     ) : (
       <Center intristic>
-        <p style={{ fontSize: "var(--s3)", color: "var(--stdblue)" }}>
+        <p
+          style={{
+            fontSize: "var(--s3)",
+            color: "var(--stdblue)",
+          }}
+        >
           ¯\_(ツ)_/¯
         </p>
       </Center>

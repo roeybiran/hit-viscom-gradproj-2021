@@ -50,7 +50,11 @@ export default function ProjectPage(
           {x.label}:{" "}
           <a
             style={{ textDecoration: "underline" }}
-            href={x.address!}
+            href={
+              x.address!.startsWith("http")
+                ? x.address!
+                : `http://${x.address!}`
+            }
             target="_blank"
             rel="noopener noreferrer"
           >
