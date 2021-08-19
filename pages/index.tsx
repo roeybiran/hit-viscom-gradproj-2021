@@ -10,7 +10,6 @@ import strings from "@/lib/strings";
 import { useState, useMemo } from "react";
 import Footer from "@/components/Footer";
 import styled from "styled-components";
-import Cover from "@/components/Cover";
 
 const SearchModeWrapper = styled.div`
   display: flex;

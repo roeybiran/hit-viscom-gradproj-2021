@@ -61,21 +61,6 @@ export default function ProjectCard(props: Props) {
               {student.firstName} {student.lastName}
             </p>
             <p>{projectName}</p>
-
-            <div
-              style={{
-                marginTop: "var(--s-1)",
-                opacity: room && floor ? 1 : 0,
-                textAlign: "left",
-              }}
-            >
-              <p>
-                {strings.he.floor}: {floor}
-              </p>
-              <p>
-                {strings.he.room}: {room}
-              </p>
-            </div>
           </ProjectLabel>
         </a>
       </Link>

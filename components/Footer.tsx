@@ -19,6 +19,10 @@ const Wrapper = styled.div`
   margin-block-end: var(--s0);
   text-decoration: none;
 
+  .colophon a {
+    text-decoration: underline;
+  }
+
   .scroller {
     overflow-x: hidden;
     position: relative;
@@ -90,17 +94,30 @@ export default function Footer(prop: Props) {
                 <address>{strings.he.hitAddress}</address>
               </div>
             </a>
-            <p>
+            <p className="colophon">
               {strings.he.credits.dev}:{" "}
               <Link href={mySlug}>
-                <a
-                  style={{
-                    textDecoration: "underline",
-                  }}
-                >
-                  {strings.he.credits.me}
-                </a>
+                <a>{strings.he.credits.me}</a>
               </Link>
+            </p>
+            <p className="colophon">
+              {strings.he.builtWith}{" "}
+              <a
+                href="https://nextjs.org"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Next.js
+              </a>
+              . {strings.he.hostedOn}{" "}
+              <a
+                href="https://vercel.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Vercel
+              </a>
+              .
             </p>
           </Center>
         </div>
