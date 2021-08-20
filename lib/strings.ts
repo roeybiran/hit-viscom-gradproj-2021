@@ -50,6 +50,8 @@ const he = {
     me: "רועי בירן",
   },
   backToHome: "→ חזרה לעמוד הבית",
+  builtWith: "נבנה עם",
+  hostedOn: "מאוחסן על",
 };
 
 const en = { ...he };
