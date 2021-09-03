@@ -1,120 +1,79 @@
 import Link from "next/link";
 import strings from "@/lib/strings";
-import Image from "next/image";
 import styled from "styled-components";
-import Center from "./Center";
-import SearchBar from "./SearchBar";
+import Center from "./layout/Center";
 
-const MastheadWrapper = styled.div`
-  gap: var(--s0);
-  display: flex;
-  flex-flow: row-reverse wrap;
-  justify-content: space-between;
-  > * {
-    flex-grow: 1;
+const Header = styled.header`
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(96px);
+  -webkit-backdrop-filter: blur(96px);
+  z-index: 2;
+  padding-block-start: var(--s-2);
+  margin-block-end: var(--s1);
+
+  .divider {
+    border-bottom: 1px solid currentColor;
+    margin-block-start: var(--s-2);
+  }
+
+  a:not(.home-link),
+  a > span:not(.beta-badge) {
+    text-decoration: underline;
+  }
+
+  span.beta-badge {
+    vertical-align: super;
+    font-size: 75%;
+    font-weight: initial;
+  }
+
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--s-2);
+    /* column-gap: var(--s-2); */
+    align-items: baseline;
+
+    > *:nth-child(odd) {
+      font-weight: 700;
+    }
+
+    > *:nth-last-child(2) {
+      margin-inline-start: auto;
+    }
+  }
+
+  .hit-link {
+    letter-spacing: "1px";
   }
 `;
 
-const Divider = styled.div`
-  border-bottom: 1px solid currentColor;
-  margin-block-end: var(--s0);
-`;
-
-interface Props {
-  onInput?: (arg: string) => void;
-}
-
-const style = { fontSize: "var(--s1)" };
-
-export default function Nav(props: Props) {
+export default function Nav() {
   return (
-    <>
-      <header
-        style={{
-          position: "sticky",
-          top: "0",
-          backgroundColor: "rgba(255, 255, 255, 0.8)",
-          backdropFilter: "blur(96px)",
-          WebkitBackdropFilter: "blur(96px)",
-          zIndex: 2,
-          ...style,
-        }}
-      >
-        <Home />
-        <Divider />
-      </header>
-      <div style={{ ...style, marginBlockEnd: "var(--s2)" }}>
-        <Center max="none" gutters="var(--s1)">
-          <MastheadWrapper>
-            <HitInfo />
-            <div>
-              <Details />
-              {props.onInput && <SearchBar onInput={props.onInput} />}
-            </div>
-          </MastheadWrapper>
-        </Center>
-      </div>
-    </>
+    <Header>
+      <Center max="none" gutters="var(--s1)">
+        <div className="content">
+          <Link href="/">
+            <a className="home-link">
+              <span>{strings.exhibitionName}</span>
+              <span className="beta-badge">בטא</span>
+            </a>
+          </Link>
+          <p>{strings.exhibitionDescription}</p>
+          <p>2021</p>
+          <p>{strings.departmentName}</p>
+          <a
+            href="https://www.hit.ac.il/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <abbr title="Holon Institute of Technology">HIT</abbr>
+          </a>
+        </div>
+      </Center>
+      <div className="divider" />
+    </Header>
   );
 }
-
-const Home = () => (
-  <Center max="none" gutters="var(--s1)">
-    <Link href="/">
-      <a
-        style={{
-          fontWeight: 700,
-          display: "block",
-          paddingBlockStart: "var(--s1)",
-          paddingBlockEnd: "var(--s1)",
-        }}
-      >
-        {strings.he.exhibitionName}
-      </a>
-    </Link>
-  </Center>
-);
-
-const Details = () => (
-  <>
-    <p>{strings.he.exhibitionDescription}</p>
-    <p style={{ fontWeight: 700 }}>{strings.he.exhibitionDept}</p>
-    <p>{new Date().getFullYear()}</p>
-    <p
-      style={{
-        display: "inline-block",
-        fontSize: "var(--s0)",
-        paddingLeft: "var(--s-2)",
-        paddingRight: "var(--s-2)",
-        backgroundColor: "var(--stdblue)",
-        color: "rgba(255, 255, 255, 0.9)",
-        borderRadius: "5px",
-      }}
-    >
-      בטא
-    </p>
-  </>
-);
-
-const HitInfo = () => (
-  <div
-    style={{
-      fontSize: "initial",
-      textAlign: "left",
-    }}
-  >
-    <a
-      href="https://www.hit.ac.il/"
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        letterSpacing: "1px",
-        fontWeight: 700,
-      }}
-    >
-      HIT
-    </a>
-    <p style={{ maxWidth: "none" }}>{strings.he.hitFullName}</p>
-    <p style={{ maxWidth: "none" }}>{strings.he.facultyName}</p>
-  </div>
-);

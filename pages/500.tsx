@@ -6,10 +6,10 @@ export default function Custom500() {
   return (
     <>
       <Head>
-        <title>{strings.he.heads[500].title}</title>
-        <meta name="description" content={strings.he.heads[500].description} />
+        <title>{strings.heads[500].title}</title>
+        <meta name="description" content={strings.heads[500].description} />
       </Head>
-      <ErrorPage errorMessage={strings.he[500]} />
+      <ErrorPage errorMessage={strings[500]} />
     </>
   );
 }

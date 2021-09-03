@@ -1,4 +1,5 @@
 import fetchAirtableData from "./fetchAirtableData";
+import makeFeaturedImage from "./makeFeaturedImage";
 import makeOtherImages from "./makeOtherImages";
 import makeVideos from "./makeVideos";
 
@@ -27,6 +28,7 @@ async function makeFullProject(
 
   const id = record.id;
   const slug = record.slug;
+  const featuredImageSrc = (await makeFeaturedImage(record.featuredImage)).url;
   const imageAlt = record.imagesAltText;
   const room = record.room ?? null;
   const floor = record.floor ?? null;
@@ -62,5 +64,6 @@ async function makeFullProject(
     projectUrl,
     student,
     category,
+    featuredImageSrc,
   };
 }

@@ -1,25 +1,3 @@
-/*
-שם פרטי עברית
-שם משפחה עברית
-שם פרטי אנגלית
-שם משפחה אנגלית
-עמוד פורטפוליו
-עמוד אינסטגרם
-מייל
-טלפון
-שם פרויקט עברית
-שם פרויקט אנגלית
-מדיה ופורמט
-תקציר פרויקט עברית
-תקציר פרויקט אנגלית
-לינק לעמוד הפרויקט
-תמונה מייצגת
-תמונות נוספות
-סרטונים
-קומה
-חדר
-*/
-
 interface FormattedRecord {
   id: string;
   //
@@ -103,6 +81,7 @@ interface ProjectDetails {
   student: Student;
   projectUrl: string | null;
   category: string | null;
+  featuredImageSrc: string;
 }
 
 type Student = StudentPreview & StudentDetails;

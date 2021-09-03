@@ -6,10 +6,10 @@ export default function Custom404() {
   return (
     <>
       <Head>
-        <title>{strings.he.heads[404].title}</title>
-        <meta name="description" content={strings.he.heads[404].description} />
+        <title>{strings.heads[404].title}</title>
+        <meta name="description" content={strings.heads[404].description} />
       </Head>
-      <ErrorPage errorMessage={strings.he[404]} />
+      <ErrorPage errorMessage={strings.heads[404].description} />
     </>
   );
 }

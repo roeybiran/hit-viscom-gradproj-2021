@@ -1,4 +1,3 @@
-import strings from "@/lib/strings";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
@@ -29,8 +28,7 @@ interface Props {
 }
 
 export default function ProjectCard(props: Props) {
-  const { slug, featuredImage, imageAlt, projectName, student, room, floor } =
-    props;
+  const { slug, featuredImage, imageAlt, projectName, student } = props;
   return (
     <article>
       <Link href={`/projects/${encodeURIComponent(slug)}`}>

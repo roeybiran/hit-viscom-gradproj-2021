@@ -1,14 +1,11 @@
-const suffix = {
-  he: "תערוכת בוגרים.ות 2021 — המחלקה לתקשורת חזותית — מכון טכנולוגי חולון",
-};
+const suffix =
+  "תערוכת בוגרים.ות 2021 — המחלקה לתקשורת חזותית — מכון טכנולוגי חולון";
 
-const he = {
-  suffix: suffix.he,
-  floor: "קומה",
-  room: "חדר",
+const strings = {
+  suffix,
   exhibitionName: "וַרְיָאנְטִים",
-  exhibitionDescription: "תערוכת בוגרים.ות",
-  exhibitionDept: "המחלקה לתקשורת חזותית",
+  exhibitionDescription: "בוגרים.ות",
+  departmentName: "תקשורת חזותית",
   facultyName: "הפקולטה לעיצוב",
   hitFullName: "מכון טכנולוגי חולון",
   hitAddress: "רחוב הופיין 63, חולון",
@@ -18,7 +15,7 @@ const he = {
   portfolio: "פורטפוליו",
   "404": "העמוד לא נמצא.",
   "500": "תקלה בשרת.",
-  // routes
+
   home: "בית",
   gallery: "גלריה",
   index: "חיפוש",
@@ -28,20 +25,16 @@ const he = {
   backArrow: "→",
   heads: {
     home: {
-      title: `בית | ${suffix.he}`,
+      title: `בית | ${suffix}`,
       description:
         ".אתר תערוכת הבוגרים.ות 2021 של המחלקה לתקשורת חזותית במכון הטכנולוגי חולון",
     },
-    search: {
-      title: `חיפוש | ${suffix.he}`,
-      description: "חפש בתערוכה לפי שם הפרויקט או הסטודנט.ית.",
-    },
     "404": {
-      title: `404 | ${suffix.he}`,
+      title: `404 | ${suffix}`,
       description: "העמוד לא נמצא.",
     },
     "500": {
-      title: `500 | ${suffix.he}`,
+      title: `500 | ${suffix}`,
       description: "תקלת שרת.",
     },
   },
@@ -50,15 +43,6 @@ const he = {
     me: "רועי בירן",
   },
   backToHome: "→ חזרה לעמוד הבית",
-  builtWith: "נבנה עם",
-  hostedOn: "מאוחסן על",
-};
-
-const en = { ...he };
-
-const strings = {
-  he,
-  en,
 };
 
 export default strings;
