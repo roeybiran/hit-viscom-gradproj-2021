@@ -5,7 +5,6 @@ import strings from "@/lib/strings";
 
 const Form = styled.form`
   font-size: initial;
-  margin-block-start: var(--s1);
 
   input {
     display: block;
@@ -13,6 +12,7 @@ const Form = styled.form`
     outline: none;
     background-color: rgba(1, 1, 1, 0);
     appearance: none;
+    color: var(--stdblue);
   }
 
   input:active,
@@ -37,13 +37,9 @@ export default function SearchBar(props: Props) {
   useEffect(() => debouncer.clear(), [debouncer]);
 
   return (
-    <Form
-      method="get"
-      action="/api/search/"
-      onSubmit={(e) => e.preventDefault()}
-    >
-      <label className="sr-only" htmlFor="query">
-        {strings.he.searchLabel}
+    <Form onSubmit={(e) => e.preventDefault()}>
+      <label className="sr-only" htmlFor="query-field">
+        {strings.searchLabel}
       </label>
       {/* TODO: progressively enhance */}
       <input
@@ -53,10 +49,9 @@ export default function SearchBar(props: Props) {
           display: "block",
         }}
         type="text"
-        id="query"
-        name="q"
+        id="query-field"
         onInput={handler}
-        placeholder={strings.he.searchPlaceholder}
+        placeholder={strings.searchPlaceholder}
       />
     </Form>
   );

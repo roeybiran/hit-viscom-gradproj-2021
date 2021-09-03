@@ -5,72 +5,35 @@ import {
 } from "next";
 import Image from "next/image";
 import Head from "next/head";
-import styled from "styled-components";
 
 import fetchFullProject from "@/lib/fetchFullProject";
 import strings from "@/lib/strings";
 
-import Center from "@/components/Center";
 import Nav from "@/components/Header";
-import Stack from "@/components/Stack";
+import Center from "@/components/layout/Center";
+import Stack from "@/components/layout/Stack";
 import fetchAirtableData from "@/lib/fetchAirtableData";
-import Custom404 from "pages/404";
 import Link from "next/link";
 import Footer from "@/components/Footer";
+import Social from "@/components/Social";
 
 export default function ProjectPage(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
-  const project = props.project;
-  if (!project) {
-    return <Custom404 />;
-  }
-
+  const project = props.project!;
   const fullName = `${project.student.firstName} ${project.student.lastName}`;
-  const social = [
-    { address: project.projectUrl, label: strings.he.projectUrl },
-    { address: project.student.mail, label: strings.he.mail },
-    { address: project.student.portfolio, label: strings.he.portfolio },
-    { address: project.student.instagram, label: strings.he.instagram },
-  ]
-    .filter((x) => x.address)
-    .map((x) => {
-      const prettyUrl = x
-        .address!.toLowerCase()
-        .replace(/^http(s?):\/\//, "")
-        .replace(/^www\./, "")
-        .replace(/^mailto:/, "")
-        .split("/")
-        .filter((x) => x)
-        .slice(0, 2)
-        .join("/");
-
-      return (
-        <li key={x.label}>
-          {x.label}:{" "}
-          <a
-            style={{ textDecoration: "underline" }}
-            href={
-              x.address!.startsWith("http")
-                ? x.address!
-                : `http://${x.address!}`
-            }
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {prettyUrl}
-          </a>
-        </li>
-      );
-    });
-
+  const title = `${fullName} - ${project.name} | ${strings.suffix}`;
   return (
     <>
       <Head>
-        <title>
-          {fullName} - {project.name} | {strings.he.suffix}
-        </title>
+        <title>{title}</title>
         <meta name="description" content={project.summary} />
+        <meta property="og:title" content={title} />
+        <meta property="og:image" content={project.featuredImageSrc} />
+        <meta property="og:description" content={project.summary} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:image" content={project.featuredImageSrc} />
+        <meta property="twitter:description" content={project.summary} />
       </Head>
       <Nav />
       <Stack>
@@ -83,9 +46,9 @@ export default function ProjectPage(
                   marginBlockEnd: "var(--s1)",
                 }}
               >
-                {strings.he.backArrow}{" "}
+                {strings.backArrow}{" "}
                 <span style={{ textDecoration: "underline" }}>
-                  {strings.he.back}
+                  {strings.back}
                 </span>
               </a>
             </Link>
@@ -98,7 +61,12 @@ export default function ProjectPage(
             <Center intristic={false} gutters="var(--s1)">
               <Stack>
                 <p>{project.summary}</p>
-                {social.length > 0 && <ul>{social}</ul>}
+                <Social
+                  projectUrl={project.projectUrl}
+                  mail={project.student.mail}
+                  portfolio={project.student.portfolio}
+                  instagram={project.student.instagram}
+                />
               </Stack>
             </Center>
             <Center intristic max="1024px">
@@ -158,5 +126,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = (await fetchAirtableData()).map(({ slug }) => ({
     params: { slug },
   }));
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };

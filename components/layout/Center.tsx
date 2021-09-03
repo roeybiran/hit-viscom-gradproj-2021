@@ -1,4 +1,3 @@
-import { CSSProperties } from "react";
 import styled from "styled-components";
 
 // https://every-layout.dev/layouts/center/
@@ -17,17 +16,15 @@ const Wrapper = styled.div`
 
 interface Props {
   max?: number | string;
-  centerText?: boolean;
+  andText?: boolean;
   gutters?: number | string;
   intristic?: boolean;
-  style?: CSSProperties;
-  asElement?: string;
   children: React.ReactNode;
 }
 
 const Center = ({
   max = "var(--measure)",
-  centerText = false,
+  andText = false,
   gutters = 0,
   intristic = false,
   children,
@@ -36,7 +33,7 @@ const Center = ({
     className={intristic ? "flexbox" : undefined}
     style={{
       maxWidth: max,
-      textAlign: centerText ? "center" : "initial",
+      textAlign: andText ? "center" : "initial",
       paddingLeft: gutters,
       paddingRight: gutters,
     }}

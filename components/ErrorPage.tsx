@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Center from "../components/Center";
-import Cover from "../components/Cover";
+import Center from "../components/layout/Center";
+import Cover from "../components/layout/Cover";
 import Link from "next/link";
 import strings from "@/lib/strings";
 
@@ -20,7 +20,7 @@ export default function ErrorPage(props: Props) {
         <Center intristic>
           <h1>{props.errorMessage}</h1>
           <Link href="/">
-            <a>{strings.he.backToHome}</a>
+            <a>{strings.backToHome}</a>
           </Link>
         </Center>
       </Cover>
