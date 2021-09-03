@@ -23,8 +23,6 @@ interface Props {
     firstName: string;
     lastName: string;
   };
-  room: string | null;
-  floor: string | null;
 }
 
 export default function ProjectCard(props: Props) {

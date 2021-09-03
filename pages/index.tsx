@@ -1,4 +1,4 @@
-import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
+import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import ProjectCard from "@/components/ProjectCard";
 import Center from "@/components/layout/Center";
@@ -7,13 +7,12 @@ import Nav from "@/components/Header";
 import fetchAirtableData from "@/lib/fetchAirtableData";
 import makeFeaturedImage from "@/lib/makeFeaturedImage";
 import strings from "@/lib/strings";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Footer from "@/components/Footer";
 import styled from "styled-components";
 import SearchBar from "@/components/SearchBar";
 import Stack from "@/components/layout/Stack";
 import Cover from "@/components/layout/Cover";
-import { useRouter } from "next/dist/client/router";
 
 const Wrapper = styled.div`
   .no-results {
@@ -25,15 +24,36 @@ const Wrapper = styled.div`
 export default function Home({
   projects: allProjects,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const [currentProjects, setCurrentCards] = useState(allProjects);
+  const allCards = useMemo(
+    () =>
+      allProjects.map((p) => ({
+        project: p,
+        card: (
+          <ProjectCard
+            key={p.id}
+            slug={p.slug}
+            featuredImage={p.featuredImage}
+            imageAlt={p.imageAlt}
+            projectName={p.projectName}
+            student={{
+              firstName: p.student.firstName,
+              lastName: p.student.lastName,
+            }}
+          />
+        ),
+      })),
+    [allProjects]
+  );
+
+  const [currentCards, setCurrentCards] = useState(allCards);
 
   const handleChange = (s: string) => {
     const q = s.toLowerCase().replace(/\s/g, "");
     if (!q) {
-      setCurrentCards(allProjects);
+      setCurrentCards(allCards);
       return;
     }
-    const filtered = allProjects.filter((p) => {
+    const filtered = allCards.filter(({ project: p }) => {
       const haystacks = [
         p.student.firstName,
         p.student.lastName,
@@ -76,24 +96,8 @@ export default function Home({
             <h1>{strings.suffix}</h1>
           </header>
           <main>
-            {currentProjects.length > 0 ? (
-              <Grid>
-                {currentProjects.map((p) => (
-                  <ProjectCard
-                    key={p.id}
-                    slug={p.slug}
-                    featuredImage={p.featuredImage}
-                    imageAlt={p.imageAlt}
-                    projectName={p.projectName}
-                    student={{
-                      firstName: p.student.firstName,
-                      lastName: p.student.lastName,
-                    }}
-                    room={p.room}
-                    floor={p.floor}
-                  />
-                ))}
-              </Grid>
+            {currentCards.length > 0 ? (
+              <Grid>{currentCards.map(({ card }) => card)}</Grid>
             ) : (
               <Cover centered="div">
                 <Center intristic>

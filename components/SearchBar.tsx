@@ -12,6 +12,7 @@ const Form = styled.form`
     outline: none;
     background-color: rgba(1, 1, 1, 0);
     appearance: none;
+    color: var(--stdblue);
   }
 
   input:active,
