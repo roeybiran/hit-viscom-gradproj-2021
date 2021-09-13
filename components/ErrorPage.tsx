@@ -16,7 +16,7 @@ export default function ErrorPage(props: Props) {
   return (
     <Wrapper>
       <Cover centered="div">
-        <Center intristic>
+        <Center intrinsic>
           <h1>{props.errorMessage}</h1>
           <Link href="/">
             <a>{strings.backToHome}</a>
