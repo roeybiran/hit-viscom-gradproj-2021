@@ -34,6 +34,12 @@ const Wrapper = styled.div`
   header p {
     font-size: var(--s1);
   }
+
+  .image-container {
+    position: relative;
+    width: 100vw;
+    height: 90vh;
+  }
 `;
 
 export default function ProjectPage(
@@ -83,21 +89,20 @@ export default function ProjectPage(
               {project.videos.map((vid) => (
                 <div key={vid} dangerouslySetInnerHTML={{ __html: vid }} />
               ))}
-              {project.otherImages.map((img) => {
-                return (
-                  <div key={img.url}>
-                    <Image
-                      src={img.url}
-                      width={img.width}
-                      height={img.height}
-                      alt={project.imageAlt}
-                      placeholder="blur"
-                      objectFit="contain"
-                      blurDataURL={img.blurDataUrl}
-                    />
-                  </div>
-                );
-              })}
+              {project.otherImages.map((img) => (
+                <div className="image-container" key={img.url}>
+                  <Image
+                    src={img.url}
+                    // width={img.width}
+                    // height={img.height}
+                    alt={project.imageAlt}
+                    layout="fill"
+                    placeholder="blur"
+                    objectFit="contain"
+                    blurDataURL={img.blurDataUrl}
+                  />
+                </div>
+              ))}
             </Stack>
           </Center>
         </Stack>

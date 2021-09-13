@@ -36,7 +36,7 @@ const Wrapper = styled.div`
   }
 
   .scroller {
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative;
     display: flex;
 
@@ -133,7 +133,7 @@ const NameList = (props: Props & { ariaHidden?: boolean }) => (
     {props.list.map(({ first, last, slug }) => (
       <li key={`${slug}`}>
         <Link href={`${projectsSlug}/${slug}`}>
-          <a>
+          <a tabIndex={-1}>
             {first} {last}
           </a>
         </Link>

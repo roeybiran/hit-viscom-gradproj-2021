@@ -21,6 +21,14 @@ const Wrapper = styled.div`
     font-size: var(--s3);
     color: var(--stdblue);
   }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+  }
+
+  main {
+    min-height: 100vh;
+  }
 `;
 
 export default function Home({
@@ -98,7 +106,9 @@ export default function Home({
             <h1>{strings.suffix}</h1>
           </header>
           {currentCards.length > 0 ? (
-            <Grid as="ul">{currentCards.map(({ card }) => card)}</Grid>
+            <Grid className="grid" as="ul">
+              {currentCards.map(({ card }) => card)}
+            </Grid>
           ) : (
             <Cover centered="div">
               <Center intrinsic>
