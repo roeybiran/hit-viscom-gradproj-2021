@@ -3,8 +3,7 @@ import styled, { keyframes } from "styled-components";
 import Link from "next/link";
 import hitLogo from "/public/hitLogo.svg";
 import Image from "next/image";
-import Stack from "./layout/Stack";
-import Center from "./layout/Center";
+import { Stack, Center } from "@roeybiran/every-layout-styled-components";
 
 const projectsSlug = "/projects";
 
@@ -84,7 +83,7 @@ export default function Footer(prop: Props) {
         </div>
         <Divider />
         <div className="center-wrapper">
-          <Center intristic max="none" gutters="var(--s1)">
+          <Center intrinsic max="none" gutters="var(--s1)">
             <a
               href="https://www.hit.ac.il/"
               target="_blank"

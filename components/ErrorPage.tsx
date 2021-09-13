@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import Center from "../components/layout/Center";
-import Cover from "../components/layout/Cover";
+import { Cover, Center } from "@roeybiran/every-layout-styled-components";
 import Link from "next/link";
 import strings from "@/lib/strings";
 

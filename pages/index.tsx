@@ -1,8 +1,6 @@
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import ProjectCard from "@/components/ProjectCard";
-import Center from "@/components/layout/Center";
-import Grid from "@/components/layout/Grid";
 import Nav from "@/components/Header";
 import fetchAirtableData from "@/lib/fetchAirtableData";
 import makeFeaturedImage from "@/lib/makeFeaturedImage";
@@ -11,8 +9,12 @@ import { useMemo, useState } from "react";
 import Footer from "@/components/Footer";
 import styled from "styled-components";
 import SearchBar from "@/components/SearchBar";
-import Stack from "@/components/layout/Stack";
-import Cover from "@/components/layout/Cover";
+import {
+  Center,
+  Grid,
+  Stack,
+  Cover,
+} from "@roeybiran/every-layout-styled-components";
 
 const Wrapper = styled.div`
   .no-results {
@@ -89,23 +91,21 @@ export default function Home({
         />
       </Head>
       <Nav />
-      <Center max="none" gutters="var(--s1)">
+      <Center as="main" max="none" gutters="var(--s1)">
         <Stack>
           <SearchBar onInput={handleChange} />
           <header className="sr-only">
             <h1>{strings.suffix}</h1>
           </header>
-          <main>
-            {currentCards.length > 0 ? (
-              <Grid>{currentCards.map(({ card }) => card)}</Grid>
-            ) : (
-              <Cover centered="div">
-                <Center intristic>
-                  <p className="no-results">¯\_(ツ)_/¯</p>
-                </Center>
-              </Cover>
-            )}
-          </main>
+          {currentCards.length > 0 ? (
+            <Grid as="ul">{currentCards.map(({ card }) => card)}</Grid>
+          ) : (
+            <Cover centered="div">
+              <Center intrinsic>
+                <p className="no-results">¯\_(ツ)_/¯</p>
+              </Center>
+            </Cover>
+          )}
         </Stack>
       </Center>
       <Footer

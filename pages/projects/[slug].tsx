@@ -10,12 +10,31 @@ import fetchFullProject from "@/lib/fetchFullProject";
 import strings from "@/lib/strings";
 
 import Nav from "@/components/Header";
-import Center from "@/components/layout/Center";
-import Stack from "@/components/layout/Stack";
+import { Center, Stack } from "@roeybiran/every-layout-styled-components";
 import fetchAirtableData from "@/lib/fetchAirtableData";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import Social from "@/components/Social";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  .back {
+    display: block;
+    margin-block-end: var(--s1);
+  }
+
+  .back > span {
+    text-decoration: underline;
+  }
+
+  header h1 {
+    font-weight: 700;
+  }
+
+  header p {
+    font-size: var(--s1);
+  }
+`;
 
 export default function ProjectPage(
   props: InferGetStaticPropsType<typeof getStaticProps>
@@ -36,65 +55,55 @@ export default function ProjectPage(
         <meta property="twitter:description" content={project.summary} />
       </Head>
       <Nav />
-      <Stack>
-        <Center intristic={false} gutters="var(--s1)">
-          <header>
-            <Link href="/">
-              <a
-                style={{
-                  display: "block",
-                  marginBlockEnd: "var(--s1)",
-                }}
-              >
-                {strings.backArrow}{" "}
-                <span style={{ textDecoration: "underline" }}>
-                  {strings.back}
-                </span>
-              </a>
-            </Link>
-            <h1 style={{ fontWeight: 700 }}>{fullName}</h1>
-            <p style={{ fontSize: "var(--s1)" }}>{project.name}</p>
-          </header>
-        </Center>
-        <main>
-          <Stack space="var(--s3)">
-            <Center intristic={false} gutters="var(--s1)">
-              <Stack>
-                <p>{project.summary}</p>
-                <Social
-                  projectUrl={project.projectUrl}
-                  mail={project.student.mail}
-                  portfolio={project.student.portfolio}
-                  instagram={project.student.instagram}
-                />
-              </Stack>
-            </Center>
-            <Center intristic max="1024px">
-              <Stack>
-                {project.videos.map((vid) => (
-                  <div key={vid} dangerouslySetInnerHTML={{ __html: vid }} />
-                ))}
-                {project.otherImages.map((img) => {
-                  return (
-                    <div key={img.url}>
-                      <Image
-                        src={img.url}
-                        width={img.width}
-                        height={img.height}
-                        alt={project.imageAlt}
-                        placeholder="blur"
-                        objectFit="contain"
-                        blurDataURL={img.blurDataUrl}
-                      />
-                    </div>
-                  );
-                })}
-              </Stack>
-            </Center>
-          </Stack>
-        </main>
-        <Footer list={props.allProjects} />
-      </Stack>
+      <Wrapper>
+        <Stack as="main">
+          <Center gutters="var(--s0)">
+            <Stack>
+              <header>
+                <Link href="/">
+                  <a className="back">
+                    {strings.backArrow} <span>{strings.back}</span>
+                  </a>
+                </Link>
+                <h1>{fullName}</h1>
+                <p>{project.name}</p>
+              </header>
+              <p>{project.summary}</p>
+              <Social
+                projectUrl={project.projectUrl}
+                mail={project.student.mail}
+                portfolio={project.student.portfolio}
+                instagram={project.student.instagram}
+              />
+            </Stack>
+          </Center>
+
+          <Center intrinsic max="none">
+            <Stack>
+              {project.videos.map((vid) => (
+                <div key={vid} dangerouslySetInnerHTML={{ __html: vid }} />
+              ))}
+              {project.otherImages.map((img) => {
+                return (
+                  <div key={img.url}>
+                    <Image
+                      src={img.url}
+                      width={img.width}
+                      height={img.height}
+                      alt={project.imageAlt}
+                      placeholder="blur"
+                      objectFit="contain"
+                      blurDataURL={img.blurDataUrl}
+                    />
+                  </div>
+                );
+              })}
+            </Stack>
+          </Center>
+        </Stack>
+      </Wrapper>
+
+      <Footer list={props.allProjects} />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import strings from "@/lib/strings";
 import styled from "styled-components";
-import Center from "./layout/Center";
+import { Center } from "@roeybiran/every-layout-styled-components";
 
 const Header = styled.header`
   position: sticky;
