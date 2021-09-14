@@ -43,6 +43,7 @@ const strings = {
     me: "רועי בירן",
   },
   backToHome: "→ חזרה לעמוד הבית",
+  noResults: "אין תוצאות",
 };
 
 export default strings;

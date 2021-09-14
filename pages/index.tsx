@@ -105,17 +105,19 @@ export default function Home({
           <header className="sr-only">
             <h1>{strings.suffix}</h1>
           </header>
-          {currentCards.length > 0 ? (
-            <Grid className="grid" as="ul">
-              {currentCards.map(({ card }) => card)}
-            </Grid>
-          ) : (
-            <Cover centered="div">
-              <Center intrinsic>
-                <p className="no-results">¯\_(ツ)_/¯</p>
-              </Center>
-            </Cover>
-          )}
+          <div aria-live="polite">
+            {currentCards.length > 0 ? (
+              <Grid className="grid" as="ul">
+                {currentCards.map(({ card }) => card)}
+              </Grid>
+            ) : (
+              <Cover centered="div">
+                <Center intrinsic>
+                  <p className="no-results">{strings.noResults} ¯\_(ツ)_/¯</p>
+                </Center>
+              </Cover>
+            )}
+          </div>
         </Stack>
       </Center>
       <Footer
