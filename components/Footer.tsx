@@ -39,18 +39,26 @@ const Wrapper = styled.div`
     overflow: hidden;
     position: relative;
     display: flex;
+  }
 
-    ul {
-      transform: translateX(100%);
-      display: inline-block;
-      white-space: nowrap;
-      will-change: transform;
-      animation: 120s linear 0s infinite normal none running ${scrolling};
-    }
+  .scroller:hover ul {
+    animation-play-state: paused;
+  }
 
-    li {
-      display: inline-block;
-    }
+  .scroller ul {
+    transform: translateX(100%);
+    display: inline-block;
+    white-space: nowrap;
+    will-change: transform;
+    animation: 120s linear 0s infinite normal none running ${scrolling};
+  }
+
+  .scroller li {
+    display: inline-block;
+  }
+
+  .scroller a:hover {
+    text-decoration: underline;
   }
 
   @media (prefers-reduced-motion) {

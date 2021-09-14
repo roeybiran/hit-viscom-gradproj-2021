@@ -15,12 +15,6 @@ const Form = styled.form`
     color: var(--stdblue);
   }
 
-  /* @media (min-width: 576px) {
-    input {
-      font-size: var(--s2);
-    }
-  } */
-
   input:active,
   input:focus {
     border-bottom-style: dashed;
