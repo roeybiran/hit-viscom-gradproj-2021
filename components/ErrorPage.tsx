@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import Center from "../components/layout/Center";
-import Cover from "../components/layout/Cover";
+import { Cover, Center } from "@roeybiran/every-layout-styled-components";
 import Link from "next/link";
 import strings from "@/lib/strings";
 
@@ -17,7 +16,7 @@ export default function ErrorPage(props: Props) {
   return (
     <Wrapper>
       <Cover centered="div">
-        <Center intristic>
+        <Center intrinsic>
           <h1>{props.errorMessage}</h1>
           <Link href="/">
             <a>{strings.backToHome}</a>

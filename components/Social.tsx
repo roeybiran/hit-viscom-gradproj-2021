@@ -40,8 +40,6 @@ export default function Social({
                 ? x.address!
                 : `http://${x.address!}`
             }
-            target="_blank"
-            rel="noopener noreferrer"
           >
             {prettyUrl}
           </a>

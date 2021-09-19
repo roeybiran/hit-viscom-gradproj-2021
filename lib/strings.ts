@@ -21,8 +21,8 @@ const strings = {
   index: "חיפוש",
   searchLabel: "חיפוש",
   searchPlaceholder: "חיפוש לפי שם פרויקט או סטודנט.ית",
-  back: "לכל הפרויקטים",
-  backArrow: "→",
+  back: "חזרה לכל הפרויקטים",
+  backArrow: "↑",
   heads: {
     home: {
       title: `בית | ${suffix}`,
@@ -43,6 +43,7 @@ const strings = {
     me: "רועי בירן",
   },
   backToHome: "→ חזרה לעמוד הבית",
+  noResults: "אין תוצאות",
 };
 
 export default strings;

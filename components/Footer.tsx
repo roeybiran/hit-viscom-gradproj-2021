@@ -3,10 +3,7 @@ import styled, { keyframes } from "styled-components";
 import Link from "next/link";
 import hitLogo from "/public/hitLogo.svg";
 import Image from "next/image";
-import Stack from "./layout/Stack";
-import Center from "./layout/Center";
-
-const projectsSlug = "/projects";
+import { Stack, Center } from "@roeybiran/every-layout-styled-components";
 
 const scrolling = keyframes`
  to {
@@ -37,21 +34,29 @@ const Wrapper = styled.div`
   }
 
   .scroller {
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative;
     display: flex;
+  }
 
-    ul {
-      transform: translateX(100%);
-      display: inline-block;
-      white-space: nowrap;
-      will-change: transform;
-      animation: 120s linear 0s infinite normal none running ${scrolling};
-    }
+  .scroller:hover ul {
+    animation-play-state: paused;
+  }
 
-    li {
-      display: inline-block;
-    }
+  .scroller ul {
+    transform: translateX(100%);
+    display: inline-block;
+    white-space: nowrap;
+    will-change: transform;
+    animation: 120s linear 0s infinite normal none running ${scrolling};
+  }
+
+  .scroller li {
+    display: inline-block;
+  }
+
+  .scroller a:hover {
+    text-decoration: underline;
   }
 
   @media (prefers-reduced-motion) {
@@ -70,7 +75,7 @@ interface Props {
 }
 
 export default function Footer(prop: Props) {
-  const mySlug = `${projectsSlug}/${
+  const mySlug = `/${
     prop.list.find((p) => ["Biran", "בירן"].includes(p.last))!.slug
   }`;
 
@@ -84,13 +89,8 @@ export default function Footer(prop: Props) {
         </div>
         <Divider />
         <div className="center-wrapper">
-          <Center intristic max="none" gutters="var(--s1)">
-            <a
-              href="https://www.hit.ac.il/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hit-link"
-            >
+          <Center intrinsic max="none" gutters="var(--s1)">
+            <a href="https://www.hit.ac.il/" className="hit-link">
               <div>
                 <Image
                   aria-hidden
@@ -112,15 +112,7 @@ export default function Footer(prop: Props) {
               </Link>
             </p>
             <p className="colophon" dir="ltr">
-              Built with{" "}
-              <a
-                href="https://nextjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Next.js
-              </a>
-              .
+              Built with <a href="https://nextjs.org">Next.js</a>.
             </p>
           </Center>
         </div>
@@ -132,9 +124,9 @@ export default function Footer(prop: Props) {
 const NameList = (props: Props & { ariaHidden?: boolean }) => (
   <ul aria-hidden={props.ariaHidden}>
     {props.list.map(({ first, last, slug }) => (
-      <li key={`${slug}`}>
-        <Link href={`${projectsSlug}/${slug}`}>
-          <a>
+      <li key={slug}>
+        <Link href={"/" + slug}>
+          <a tabIndex={-1}>
             {first} {last}
           </a>
         </Link>

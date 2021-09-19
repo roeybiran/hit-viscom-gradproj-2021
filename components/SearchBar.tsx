@@ -2,11 +2,11 @@ import { FormEvent, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import debounce from "@/lib/debounce";
 import strings from "@/lib/strings";
+import { Center } from "@roeybiran/every-layout-styled-components";
 
 const Form = styled.form`
-  font-size: initial;
-
   input {
+    width: 100%;
     display: block;
     border-bottom: 2px solid var(--stdblue);
     outline: none;
@@ -41,18 +41,14 @@ export default function SearchBar(props: Props) {
       <label className="sr-only" htmlFor="query-field">
         {strings.searchLabel}
       </label>
-      {/* TODO: progressively enhance */}
-      <input
-        style={{
-          width: "100%",
-          fontSize: "var(--s2)",
-          display: "block",
-        }}
-        type="text"
-        id="query-field"
-        onInput={handler}
-        placeholder={strings.searchPlaceholder}
-      />
+      <Center>
+        <input
+          type="text"
+          id="query-field"
+          onInput={handler}
+          placeholder={strings.searchPlaceholder}
+        />
+      </Center>
     </Form>
   );
 }

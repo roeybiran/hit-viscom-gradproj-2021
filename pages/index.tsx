@@ -1,9 +1,7 @@
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import ProjectCard from "@/components/ProjectCard";
-import Center from "@/components/layout/Center";
-import Grid from "@/components/layout/Grid";
-import Nav from "@/components/Header";
+
 import fetchAirtableData from "@/lib/fetchAirtableData";
 import makeFeaturedImage from "@/lib/makeFeaturedImage";
 import strings from "@/lib/strings";
@@ -11,13 +9,25 @@ import { useMemo, useState } from "react";
 import Footer from "@/components/Footer";
 import styled from "styled-components";
 import SearchBar from "@/components/SearchBar";
-import Stack from "@/components/layout/Stack";
-import Cover from "@/components/layout/Cover";
+import {
+  Center,
+  Grid,
+  Stack,
+  Cover,
+} from "@roeybiran/every-layout-styled-components";
 
 const Wrapper = styled.div`
   .no-results {
     font-size: var(--s3);
     color: var(--stdblue);
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+  }
+
+  main {
+    min-height: 100vh;
   }
 `;
 
@@ -88,24 +98,25 @@ export default function Home({
           content={strings.heads.home.description}
         />
       </Head>
-      <Nav />
-      <Center max="none" gutters="var(--s1)">
+      <Center as="main" max="none" gutters="var(--s1)">
         <Stack>
           <SearchBar onInput={handleChange} />
           <header className="sr-only">
             <h1>{strings.suffix}</h1>
           </header>
-          <main>
+          <div aria-live="polite">
             {currentCards.length > 0 ? (
-              <Grid>{currentCards.map(({ card }) => card)}</Grid>
+              <Grid className="grid" as="ul">
+                {currentCards.map(({ card }) => card)}
+              </Grid>
             ) : (
               <Cover centered="div">
-                <Center intristic>
-                  <p className="no-results">¯\_(ツ)_/¯</p>
+                <Center intrinsic>
+                  <p className="no-results">{strings.noResults} ¯\_(ツ)_/¯</p>
                 </Center>
               </Cover>
             )}
-          </main>
+          </div>
         </Stack>
       </Center>
       <Footer
