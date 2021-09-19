@@ -81,7 +81,7 @@ export default function ProjectCard(props: Props) {
         />
       </div>
       <div className="project-label">
-        <Link href={`/projects/${encodeURIComponent(slug)}`}>
+        <Link href={"/" + encodeURIComponent(slug)}>
           <a>
             {student.firstName} {student.lastName}
           </a>

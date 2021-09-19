@@ -1,7 +1,7 @@
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import ProjectCard from "@/components/ProjectCard";
-import Nav from "@/components/Header";
+
 import fetchAirtableData from "@/lib/fetchAirtableData";
 import makeFeaturedImage from "@/lib/makeFeaturedImage";
 import strings from "@/lib/strings";
@@ -98,7 +98,6 @@ export default function Home({
           content={strings.heads.home.description}
         />
       </Head>
-      <Nav />
       <Center as="main" max="none" gutters="var(--s1)">
         <Stack>
           <SearchBar onInput={handleChange} />

@@ -5,8 +5,6 @@ import hitLogo from "/public/hitLogo.svg";
 import Image from "next/image";
 import { Stack, Center } from "@roeybiran/every-layout-styled-components";
 
-const projectsSlug = "/projects";
-
 const scrolling = keyframes`
  to {
    transform: translateX(0%)
@@ -77,7 +75,7 @@ interface Props {
 }
 
 export default function Footer(prop: Props) {
-  const mySlug = `${projectsSlug}/${
+  const mySlug = `/${
     prop.list.find((p) => ["Biran", "בירן"].includes(p.last))!.slug
   }`;
 
@@ -92,12 +90,7 @@ export default function Footer(prop: Props) {
         <Divider />
         <div className="center-wrapper">
           <Center intrinsic max="none" gutters="var(--s1)">
-            <a
-              href="https://www.hit.ac.il/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hit-link"
-            >
+            <a href="https://www.hit.ac.il/" className="hit-link">
               <div>
                 <Image
                   aria-hidden
@@ -119,15 +112,7 @@ export default function Footer(prop: Props) {
               </Link>
             </p>
             <p className="colophon" dir="ltr">
-              Built with{" "}
-              <a
-                href="https://nextjs.org"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Next.js
-              </a>
-              .
+              Built with <a href="https://nextjs.org">Next.js</a>.
             </p>
           </Center>
         </div>
@@ -139,8 +124,8 @@ export default function Footer(prop: Props) {
 const NameList = (props: Props & { ariaHidden?: boolean }) => (
   <ul aria-hidden={props.ariaHidden}>
     {props.list.map(({ first, last, slug }) => (
-      <li key={`${slug}`}>
-        <Link href={`${projectsSlug}/${slug}`}>
+      <li key={slug}>
+        <Link href={"/" + slug}>
           <a tabIndex={-1}>
             {first} {last}
           </a>

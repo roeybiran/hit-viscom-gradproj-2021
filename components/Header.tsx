@@ -4,12 +4,6 @@ import styled from "styled-components";
 import { Center } from "@roeybiran/every-layout-styled-components";
 
 const Header = styled.header`
-  position: sticky;
-  top: 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(96px);
-  -webkit-backdrop-filter: blur(96px);
-  z-index: 2;
   padding-block-start: var(--s-2);
   margin-block-end: var(--s1);
 
@@ -33,15 +27,14 @@ const Header = styled.header`
     display: flex;
     flex-wrap: wrap;
     column-gap: var(--s-2);
-    /* column-gap: var(--s-2); */
     align-items: baseline;
 
     > *:nth-child(odd) {
       font-weight: 700;
     }
 
-    > *:nth-last-child(2) {
-      margin-inline-start: auto;
+    > *:nth-child(3) {
+      margin-inline-end: auto;
     }
   }
 
@@ -50,7 +43,7 @@ const Header = styled.header`
   }
 `;
 
-export default function Nav() {
+export default function SiteHeader() {
   return (
     <Header>
       <Center max="none" gutters="var(--s1)">
@@ -64,11 +57,7 @@ export default function Nav() {
           <p>{strings.exhibitionDescription}</p>
           <p>2021</p>
           <p>{strings.departmentName}</p>
-          <a
-            href="https://www.hit.ac.il/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://www.hit.ac.il/">
             <abbr title="Holon Institute of Technology">HIT</abbr>
           </a>
         </div>

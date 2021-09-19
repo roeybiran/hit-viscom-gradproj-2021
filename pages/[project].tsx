@@ -60,7 +60,6 @@ export default function ProjectPage(
         <meta property="twitter:image" content={project.featuredImageSrc} />
         <meta property="twitter:description" content={project.summary} />
       </Head>
-      <Nav />
       <Wrapper>
         <Stack as="main">
           <Center gutters="var(--s0)">
@@ -113,13 +112,13 @@ export default function ProjectPage(
   );
 }
 
-export const getStaticProps = async (context: GetStaticPropsContext) => {
+export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   let project;
-  if (context.params?.slug && typeof context.params.slug === "string") {
-    project = await fetchFullProject(context.params.slug);
+  if (params?.project && typeof params.project === "string") {
+    project = await fetchFullProject(params.project);
   }
 
-  // TODO: remove this redundant call (check nextjs support for getstaticprops in layout comps)
+  // TODO: remove when nextjs supports getstaticprops in layout components
   const allProjects = (await fetchAirtableData()).map(
     ({ firstNameHe, lastNameHe, slug }) => ({
       first: firstNameHe,
@@ -127,6 +126,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
       slug,
     })
   );
+
   return {
     notFound: project === undefined,
     props: {
@@ -138,7 +138,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = (await fetchAirtableData()).map(({ slug }) => ({
-    params: { slug },
+    params: { project: slug },
   }));
+
   return { paths, fallback: false };
 };
