@@ -9,7 +9,6 @@ import Head from "next/head";
 import fetchFullProject from "@/lib/fetchFullProject";
 import strings from "@/lib/strings";
 
-import Nav from "@/components/Header";
 import { Center, Stack } from "@roeybiran/every-layout-styled-components";
 import fetchAirtableData from "@/lib/fetchAirtableData";
 import Link from "next/link";
