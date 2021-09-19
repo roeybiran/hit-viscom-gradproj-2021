@@ -36,7 +36,7 @@ const Wrapper = styled.div`
 
   .image-container {
     position: relative;
-    width: 100vw;
+    width: 85vw;
     height: 90vh;
   }
 `;
@@ -91,10 +91,10 @@ export default function ProjectPage(
                 <div className="image-container" key={img.url}>
                   <Image
                     src={img.url}
-                    // width={img.width}
-                    // height={img.height}
                     alt={project.imageAlt}
                     layout="fill"
+                    // width={img.width}
+                    // height={img.height}
                     placeholder="blur"
                     objectFit="contain"
                     blurDataURL={img.blurDataUrl}
@@ -127,7 +127,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   );
 
   return {
-    notFound: project === undefined,
+    notFound: !project,
     props: {
       project,
       allProjects,
