@@ -112,7 +112,12 @@ export default function Footer(prop: Props) {
               </Link>
             </p>
             <p className="colophon" dir="ltr">
-              Built with <a href="https://nextjs.org">Next.js</a>.
+              Built with <a href="https://nextjs.org">Next.js</a>
+            </p>
+            <p className="colophon" dir="ltr">
+              <a href="https://github.com/roeybiran/hitviscom-graduates-2021">
+                Source
+              </a>
             </p>
           </Center>
         </div>
