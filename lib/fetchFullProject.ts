@@ -15,7 +15,6 @@ export default async function fetchSingleProject(slug: string) {
 async function makeFullProject(
   record: FormattedRecord
 ): Promise<ProjectDetails> {
-  // TODO: i18
   const name = record.projectNameHe;
   const summary = record.projectSummaryHe;
   const firstName = record.firstNameHe;

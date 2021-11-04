@@ -16,31 +16,6 @@ import Footer from "@/components/Footer";
 import Social from "@/components/Social";
 import styled from "styled-components";
 
-const Wrapper = styled.div`
-  .back {
-    display: block;
-    margin-block-end: var(--s1);
-  }
-
-  .back > span {
-    text-decoration: underline;
-  }
-
-  header h1 {
-    font-weight: 700;
-  }
-
-  header p {
-    font-size: var(--s1);
-  }
-
-  .image-container {
-    position: relative;
-    width: 85vw;
-    height: 90vh;
-  }
-`;
-
 export default function ProjectPage(
   props: InferGetStaticPropsType<typeof getStaticProps>
 ) {
@@ -111,13 +86,37 @@ export default function ProjectPage(
   );
 }
 
+const Wrapper = styled.div`
+  .back {
+    display: block;
+    margin-block-end: var(--s1);
+  }
+
+  .back > span {
+    text-decoration: underline;
+  }
+
+  header h1 {
+    font-weight: 700;
+  }
+
+  header p {
+    font-size: var(--s1);
+  }
+
+  .image-container {
+    position: relative;
+    width: 85vw;
+    height: 90vh;
+  }
+`;
+
 export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
   let project;
   if (params?.project && typeof params.project === "string") {
     project = await fetchFullProject(params.project);
   }
 
-  // TODO: remove when nextjs supports getstaticprops in layout components
   const allProjects = (await fetchAirtableData()).map(
     ({ firstNameHe, lastNameHe, slug }) => ({
       first: firstNameHe,

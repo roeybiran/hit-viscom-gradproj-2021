@@ -26,6 +26,14 @@ const Wrapper = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
   }
 
+  .grid + div {
+    display: none;
+  }
+
+  .grid:empty + div {
+    display: block;
+  }
+
   main {
     min-height: 100vh;
   }
@@ -105,17 +113,14 @@ export default function Home({
             <h1>{strings.suffix}</h1>
           </header>
           <div aria-live="polite">
-            {currentCards.length > 0 ? (
-              <Grid className="grid" as="ul">
-                {currentCards.map(({ card }) => card)}
-              </Grid>
-            ) : (
-              <Cover centered="div">
-                <Center intrinsic>
-                  <p className="no-results">{strings.noResults} ¯\_(ツ)_/¯</p>
-                </Center>
-              </Cover>
-            )}
+            <Grid className="grid" as="ul" aria-live="polite">
+              {currentCards.map(({ card }) => card)}
+            </Grid>
+            <Cover centered="div">
+              <Center intrinsic>
+                <p className="no-results">{strings.noResults} ¯\_(ツ)_/¯</p>
+              </Center>
+            </Cover>
           </div>
         </Stack>
       </Center>
