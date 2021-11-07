@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { Cover, Center } from "@roeybiran/every-layout-styled-components";
-import Link from "next/link";
 import strings from "@/lib/strings";
+import { Center, Cover } from "@roeybiran/every-layout-styled-components";
+import Link from "next/link";
+import styled from "styled-components";
 
 interface Props {
   errorMessage: string;

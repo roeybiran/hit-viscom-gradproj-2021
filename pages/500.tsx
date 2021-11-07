@@ -1,6 +1,6 @@
+import Head from "next/head";
 import ErrorPage from "../components/ErrorPage";
 import strings from "../lib/strings";
-import Head from "next/head";
 
 export default function Custom500() {
   return (

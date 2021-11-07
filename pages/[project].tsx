@@ -1,19 +1,17 @@
+import Footer from "@/components/Footer";
+import Social from "@/components/Social";
+import fetchAirtableData from "@/lib/fetchAirtableData";
+import fetchFullProject from "@/lib/fetchFullProject";
+import strings from "@/lib/strings";
+import { Center, Stack } from "@roeybiran/every-layout-styled-components";
 import {
   GetStaticPaths,
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from "next";
-import Image from "next/image";
 import Head from "next/head";
-
-import fetchFullProject from "@/lib/fetchFullProject";
-import strings from "@/lib/strings";
-
-import { Center, Stack } from "@roeybiran/every-layout-styled-components";
-import fetchAirtableData from "@/lib/fetchAirtableData";
+import Image from "next/image";
 import Link from "next/link";
-import Footer from "@/components/Footer";
-import Social from "@/components/Social";
 import styled from "styled-components";
 
 export default function ProjectPage(

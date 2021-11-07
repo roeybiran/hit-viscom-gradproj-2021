@@ -1,9 +1,9 @@
 import strings from "@/lib/strings";
-import styled, { keyframes } from "styled-components";
-import Link from "next/link";
-import hitLogo from "/public/hitLogo.svg";
+import { Center, Stack } from "@roeybiran/every-layout-styled-components";
 import Image from "next/image";
-import { Stack, Center } from "@roeybiran/every-layout-styled-components";
+import Link from "next/link";
+import styled, { keyframes } from "styled-components";
+import hitLogo from "/public/hitLogo.svg";
 
 const scrolling = keyframes`
  to {

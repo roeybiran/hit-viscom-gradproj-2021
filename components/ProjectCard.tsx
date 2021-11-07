@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-const Wrapper = styled.li`
+const Wrapper = styled.div`
   background-color: var(--stdblue);
   position: relative;
 

@@ -1,77 +1,32 @@
-import { InferGetStaticPropsType } from "next";
-import Head from "next/head";
+import Footer from "@/components/Footer";
 import ProjectCard from "@/components/ProjectCard";
-
+import SearchBar from "@/components/SearchBar";
 import fetchAirtableData from "@/lib/fetchAirtableData";
 import makeFeaturedImage from "@/lib/makeFeaturedImage";
 import strings from "@/lib/strings";
-import { useMemo, useState } from "react";
-import Footer from "@/components/Footer";
-import styled from "styled-components";
-import SearchBar from "@/components/SearchBar";
 import {
   Center,
+  Cover,
   Grid,
   Stack,
-  Cover,
 } from "@roeybiran/every-layout-styled-components";
-
-const Wrapper = styled.div`
-  .no-results {
-    font-size: var(--s3);
-    color: var(--stdblue);
-  }
-
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
-  }
-
-  .grid + div {
-    display: none;
-  }
-
-  .grid:empty + div {
-    display: block;
-  }
-
-  main {
-    min-height: 100vh;
-  }
-`;
+import { InferGetStaticPropsType } from "next";
+import Head from "next/head";
+import { useState } from "react";
+import styled from "styled-components";
 
 export default function Home({
-  projects: allProjects,
+  projects,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const allCards = useMemo(
-    () =>
-      allProjects.map((p) => ({
-        project: p,
-        card: (
-          <ProjectCard
-            key={p.id}
-            slug={p.slug}
-            featuredImage={p.featuredImage}
-            imageAlt={p.imageAlt}
-            projectName={p.projectName}
-            student={{
-              firstName: p.student.firstName,
-              lastName: p.student.lastName,
-            }}
-          />
-        ),
-      })),
-    [allProjects]
-  );
-
-  const [currentCards, setCurrentCards] = useState(allCards);
+  const [currentProjects, setCurrentProjects] = useState(projects);
 
   const handleChange = (s: string) => {
     const q = s.toLowerCase().replace(/\s/g, "");
     if (!q) {
-      setCurrentCards(allCards);
+      setCurrentProjects(projects);
       return;
     }
-    const filtered = allCards.filter(({ project: p }) => {
+    const filtered = projects.filter((p) => {
       const haystacks = [
         p.student.firstName,
         p.student.lastName,
@@ -82,7 +37,7 @@ export default function Home({
         .filter((s) => s.startsWith(q));
       return haystacks.length > 0;
     });
-    setCurrentCards(filtered);
+    setCurrentProjects(filtered);
   };
 
   return (
@@ -113,8 +68,29 @@ export default function Home({
             <h1>{strings.suffix}</h1>
           </header>
           <div aria-live="polite">
-            <Grid className="grid" as="ul" aria-live="polite">
-              {currentCards.map(({ card }) => card)}
+            <Grid
+              className="grid"
+              as="ul"
+              aria-live="polite"
+              data-empty={!currentProjects.length}
+            >
+              {projects.map((p) => (
+                <li
+                  key={p.id}
+                  hidden={!currentProjects.some((x) => x.id === p.id)}
+                >
+                  <ProjectCard
+                    slug={p.slug}
+                    featuredImage={p.featuredImage}
+                    imageAlt={p.imageAlt}
+                    projectName={p.projectName}
+                    student={{
+                      firstName: p.student.firstName,
+                      lastName: p.student.lastName,
+                    }}
+                  />
+                </li>
+              ))}
             </Grid>
             <Cover centered="div">
               <Center intrinsic>
@@ -125,7 +101,7 @@ export default function Home({
         </Stack>
       </Center>
       <Footer
-        list={allProjects.map(({ student, slug }) => ({
+        list={projects.map(({ student, slug }) => ({
           first: student.firstName,
           last: student.lastName,
           slug: slug,
@@ -174,3 +150,26 @@ export const getStaticProps = async () => {
     },
   };
 };
+
+const Wrapper = styled.div`
+  .no-results {
+    font-size: var(--s3);
+    color: var(--stdblue);
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+  }
+
+  .grid + div {
+    display: none;
+  }
+
+  [data-empty] + div {
+    display: block;
+  }
+
+  main {
+    min-height: 100vh;
+  }
+`;
