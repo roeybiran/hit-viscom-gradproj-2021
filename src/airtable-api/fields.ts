@@ -1,5 +1,6 @@
 const FIELDS = {
 	slug: 'slug',
+	isValid: 'isValid',
 	fullNameHe: 'fullNameHe',
 	firstNameHe: 'שם פרטי עברית',
 	lastNameHe: 'שם משפחה עברית',

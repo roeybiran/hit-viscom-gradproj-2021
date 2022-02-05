@@ -103,7 +103,7 @@ const Wrapper = styled.div`
 	/* SCROLLER */
 
 	.scroller {
-		overflow-x: hidden;
+		overflow: hidden;
 		position: relative;
 		display: flex;
 	}

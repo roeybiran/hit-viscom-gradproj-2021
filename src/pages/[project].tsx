@@ -98,6 +98,8 @@ export default function ProjectPage({
 export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
 	const projectSlug = encodeURIComponent(params?.project as string);
 
+	console.log(projectSlug);
+
 	const [{ fields: record }] = await airtableClient
 		.select({
 			fields: [
@@ -185,14 +187,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	const paths = (
 		await airtableClient
 			.select({
-				fields: [FIELDS.slug],
+				fields: [FIELDS.slug, FIELDS.isValid],
 			})
 			.firstPage()
-	).map((x) => ({
-		params: {
-			project: decodeURIComponent(x.fields[FIELDS.slug] as string),
-		},
-	}));
+	)
+		.filter((x) => x.fields[FIELDS.isValid])
+		.map((x) => ({
+			params: {
+				project: decodeURIComponent(x.fields[FIELDS.slug] as string),
+			},
+		}));
 
 	return { paths, fallback: false };
 };

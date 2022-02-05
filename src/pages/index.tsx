@@ -101,6 +101,7 @@ export const getStaticProps = async () => {
 				FIELDS.projectNameHe,
 				FIELDS.featuredImage,
 				FIELDS.slug,
+				FIELDS.isValid,
 			],
 			sort: [{ field: FIELDS.lastNameHe, direction: 'asc' }],
 		})
@@ -108,12 +109,7 @@ export const getStaticProps = async () => {
 
 	const projects = await Promise.all(
 		results
-			.filter(
-				({ fields }) =>
-					Object.keys(fields).length &&
-					fields[FIELDS.projectNameHe] &&
-					fields[FIELDS.fullNameHe]
-			)
+			.filter(({ fields }) => fields[FIELDS.isValid])
 			.map(async ({ fields }) => {
 				const studentName = fields[FIELDS.fullNameHe] as string;
 				const projectName = fields[FIELDS.projectNameHe] as string;
@@ -121,7 +117,7 @@ export const getStaticProps = async () => {
 					(fields[FIELDS.featuredImage] as AirtableImageAttachment[]) ?? []
 				);
 				const alt = `${studentName}: ${projectName}`;
-				const slug = String(fields[FIELDS.slug]);
+				const slug = fields[FIELDS.slug] as string;
 				return {
 					slug,
 					studentName,
