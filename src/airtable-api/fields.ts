@@ -1,0 +1,26 @@
+const FIELDS = {
+	slug: 'slug',
+	isValid: 'isValid',
+	fullNameHe: 'fullNameHe',
+	firstNameHe: 'שם פרטי עברית',
+	lastNameHe: 'שם משפחה עברית',
+	firstNameEn: 'שם פרטי אנגלית',
+	lastNameEn: 'שם משפחה אנגלית',
+	portfolioURL: 'עמוד פורטפוליו',
+	instagramURL: 'עמוד אינסטגרם',
+	mail: 'מייל',
+	phone: 'טלפון',
+	projectNameHe: 'שם פרויקט עברית',
+	projectNameEn: 'שם פרויקט אנגלית',
+	mediaAndFormat: 'מדיה ופורמט',
+	projectSummaryHe: 'תקציר פרויקט עברית',
+	projectSummaryEn: 'תקציר פרויקט אנגלית',
+	projectURL: 'לינק לעמוד הפרויקט',
+	featuredImage: 'תמונה מייצגת',
+	images: 'תמונות נוספות',
+	videos: 'סרטונים',
+	floor: 'קומה',
+	room: 'חדר',
+};
+
+export default FIELDS;
