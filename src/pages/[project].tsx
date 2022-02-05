@@ -109,6 +109,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
 				FIELDS.portfolioURL,
 				FIELDS.instagramURL,
 				FIELDS.featuredImage,
+				FIELDS.projectURL,
 				FIELDS.images,
 				FIELDS.videos,
 			],

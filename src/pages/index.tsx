@@ -1,4 +1,8 @@
-import { Center, Grid, Stack } from '@roeybiran/every-layout-styled-components';
+import {
+	Center,
+	Grid as ul,
+	Stack,
+} from '@roeybiran/every-layout-styled-components';
 import { InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -58,11 +62,10 @@ export default function Home({
 			<Center max="none" gutters="var(--s1)">
 				<Stack>
 					<SearchBar onInput={handleChange} />
-					<Grid
+					<ul
 						className="grid"
-						as="ul"
 						aria-live="polite"
-						data-empty={!currentProjects.filter((x) => x.show).length}
+						data-empty={currentProjects.every((x) => !x.show)}
 					>
 						{currentProjects.map((p) => (
 							<li key={p.slug} data-show={p.show}>
@@ -78,7 +81,7 @@ export default function Home({
 								/>
 							</li>
 						))}
-					</Grid>
+					</ul>
 					<Center className="no-results" intrinsic>
 						<p>
 							{STRINGS.noResults} <span aria-hidden>¯\_(ツ)_/¯</span>
@@ -138,7 +141,9 @@ export const getStaticProps = async () => {
 
 const Wrapper = styled.div`
 	.grid {
+		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+		gap: var(--s0);
 	}
 
 	.no-results {
@@ -154,7 +159,7 @@ const Wrapper = styled.div`
 		display: none;
 	}
 
-	[data-empty] + .no-results {
+	[data-empty='true'] + .no-results {
 		display: block;
 	}
 `;

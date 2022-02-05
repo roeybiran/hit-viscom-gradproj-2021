@@ -6,7 +6,8 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "tsc --noEmit && next lint",
-		"export": "next build && next export"
+		"export": "next build && next export",
+		"fetch-names": "node src/scripts/fetchNames.mjs"
 	},
 	"dependencies": {
 		"@roeybiran/every-layout-styled-components": "^1.0.6",

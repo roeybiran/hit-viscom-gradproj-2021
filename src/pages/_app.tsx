@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app';
 import '../styles/globals.css';
 import '../styles/prefers-reduced-motion.css';
 import '../styles/sr-only.css';
+import footerInfo from '../footerInfo.json';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
@@ -13,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<main>
 				<Component {...pageProps} />
 			</main>
-			<Footer list={[]} />
+			<Footer list={footerInfo} />
 		</>
 	);
 }
