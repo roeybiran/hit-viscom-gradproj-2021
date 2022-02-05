@@ -20,22 +20,23 @@
 	--stdwhite: rgb(250, 250, 250);
 
 	color: var(--stdblue);
+}
 
-	/* These are technically the same, but use both */
-	overflow-wrap: break-word;
-	word-wrap: break-word;
+#__next {
+	min-block-size: 100vh;
+	display: flex;
+	flex-direction: column;
+}
 
-	-ms-word-break: break-all;
-	/* This is the dangerous one in WebKit, as it breaks things wherever */
-	word-break: break-all;
-	/* Instead use this non-standard one: */
-	word-break: break-word;
+main {
+	flex-grow: 1;
+	justify-content: center;
+}
 
-	/* Adds a hyphen where the word breaks, if supported (No Blink) */
-	-ms-hyphens: auto;
-	-moz-hyphens: auto;
-	-webkit-hyphens: auto;
-	hyphens: auto;
+*,
+h1 {
+	margin: 0;
+	padding: 0;
 }
 
 html {
@@ -45,7 +46,6 @@ html {
 p {
 	max-width: 60ch;
 	line-height: 1.5;
-	margin: 0;
 }
 
 h1 {
@@ -70,8 +70,6 @@ a:visited {
 
 ul,
 ol {
-	margin: 0;
-	padding: 0;
 	list-style-type: none;
 }
 
