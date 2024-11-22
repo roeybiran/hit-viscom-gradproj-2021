@@ -24,18 +24,16 @@ export default function ProjectCard({
 		<Wrapper>
 			<div className="image-container">
 				<Image
+					fill
 					src={image.url}
-					layout="fill"
-					objectFit="cover"
+					style={{objectFit: 'cover'}}
 					alt={alt}
 					placeholder="blur"
 					blurDataURL={image.blurDataUrl}
 				/>
 			</div>
 			<div className="project-label">
-				<Link href={slug}>
-					<a>{studentName}</a>
-				</Link>
+				<Link href={slug}>{studentName}</Link>
 				<p>{projectName}</p>
 			</div>
 		</Wrapper>

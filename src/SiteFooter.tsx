@@ -38,9 +38,7 @@ export default function Footer(props: Props) {
 						</a>
 						<p className="colophon">
 							{strings.credits.dev}:{' '}
-							<Link href={strings.credits.mySlug}>
-								<a>{strings.credits.me}</a>
-							</Link>
+							<Link href={strings.credits.mySlug}>{strings.credits.me}</Link>
 						</p>
 						<p className="colophon" dir="ltr">
 							Built with <a href="https://nextjs.org">Next.js</a> (
@@ -60,9 +58,7 @@ const NameList = (props: Props & { ariaHidden?: boolean }) => (
 	<ul aria-hidden={props.ariaHidden}>
 		{props.list.map(({ name, slug }) => (
 			<li key={slug}>
-				<Link href={'/' + slug}>
-					<a tabIndex={-1}>{name}</a>
-				</Link>
+				<Link href={'/' + slug} tabIndex={-1}>{name}</Link>
 			</li>
 		))}
 	</ul>
