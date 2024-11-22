@@ -45,9 +45,7 @@ export default function ProjectPage({
 					<Center gutters="var(--s0)">
 						<Stack>
 							<Stack as="header">
-								<Link href="/">
-									<a>{strings.back}</a>
-								</Link>
+								<Link href="/">{strings.back}</Link>
 								<div>
 									<h1>{studentName}</h1>
 									<p>{projectName}</p>
@@ -82,7 +80,7 @@ export default function ProjectPage({
 										width={img.width}
 										height={img.height}
 										placeholder="blur"
-										objectFit="contain"
+										style={{ objectFit: 'contain' }}
 										blurDataURL={img.blurDataUrl}
 									/>
 								</div>
@@ -226,7 +224,8 @@ const Wrapper = styled.div`
 		font-size: var(--s1);
 	}
 
-	.image-container > span {
+	.image-container img {
+		max-inline-size: 100%;
 		max-block-size: 90vh;
 	}
 `;
